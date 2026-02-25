@@ -147,7 +147,7 @@
         <div class="flex items-center gap-2 mb-1">
             <span class="text-2xl">&#9992;&#65039;</span>
             <div>
-                <h2 class="font-black text-lg text-gray-800">Day 0 &#8211; 2/26 (四) 抵達日</h2>
+                <h2 class="font-black text-lg text-gray-800 flex items-center gap-2">Day 0 &#8211; 2/26 (四) 抵達日 <span id="weather-day-0" class="text-[11px] font-normal bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full whitespace-nowrap"></span></h2>
                 <p class="text-xs text-gray-400">KIX &#8594; APA Hotel &#8594; 新世界探索</p>
             </div>
         </div>
@@ -351,7 +351,7 @@
         <div class="flex items-center gap-2 mb-1">
             <span class="text-2xl">&#129420;</span>
             <div>
-                <h2 class="font-black text-lg text-gray-800">Day 1 &#8211; 2/27 (五) 奈良日</h2>
+                <h2 class="font-black text-lg text-gray-800 flex items-center gap-2">Day 1 &#8211; 2/27 (五) 奈良日 <span id="weather-day-1" class="text-[11px] font-normal bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full whitespace-nowrap"></span></h2>
                 <p class="text-xs text-gray-400">餵鹿 &#x2022; 東大寺 &#x2022; 春日大社 &#x2022; 梅花 &#x2022; 奈良町</p>
             </div>
         </div>
@@ -660,7 +660,7 @@
         <div class="flex items-center gap-2 mb-1">
             <span class="text-2xl">&#127983;</span>
             <div>
-                <h2 class="font-black text-lg text-gray-800">Day 2 &#8211; 2/28 (六) 大阪全日</h2>
+                <h2 class="font-black text-lg text-gray-800 flex items-center gap-2">Day 2 &#8211; 2/28 (六) 大阪全日 <span id="weather-day-2" class="text-[11px] font-normal bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full whitespace-nowrap"></span></h2>
                 <p class="text-xs text-gray-400">大阪城 &#x2022; 黑門市場 &#x2022; 道頓堀 &#x2022; 心齋橋 &#x2022; 梅田夜景</p>
             </div>
         </div>
@@ -883,7 +883,7 @@
         <div class="flex items-center gap-2 mb-1">
             <span class="text-2xl">&#9961;&#65039;</span>
             <div>
-                <h2 class="font-black text-lg text-gray-800">Day 3 &#8211; 3/1 (日) 京都 Day 1</h2>
+                <h2 class="font-black text-lg text-gray-800 flex items-center gap-2">Day 3 &#8211; 3/1 (日) 京都 Day 1 <span id="weather-day-3" class="text-[11px] font-normal bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full whitespace-nowrap"></span></h2>
                 <p class="text-xs text-gray-400">嵐山竹林 &#x2022; 金閣寺 &#x2022; 清水寺 &#x2022; 二年坂 &#x2192; 祇園 check in</p>
             </div>
         </div>
@@ -1171,7 +1171,7 @@
         <div class="flex items-center gap-2 mb-1">
             <span class="text-2xl">&#128088;</span>
             <div>
-                <h2 class="font-black text-lg text-gray-800">Day 4 &#8211; 3/2 (一) 和服日 + 伏見稻荷</h2>
+                <h2 class="font-black text-lg text-gray-800 flex items-center gap-2">Day 4 &#8211; 3/2 (一) 和服日 + 伏見稻荷 <span id="weather-day-4" class="text-[11px] font-normal bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full whitespace-nowrap"></span></h2>
                 <p class="text-xs text-gray-400">和服拍攝（固定）&#x2022; 午餐 &#x2022; 伏見稻荷 &#x2192; 回大阪</p>
             </div>
         </div>
@@ -1412,7 +1412,7 @@
         <div class="flex items-center gap-2 mb-1">
             <span class="text-2xl">&#9992;&#65039;</span>
             <div>
-                <h2 class="font-black text-lg text-gray-800">Day 5 &#8211; 3/3 (二) 回程日</h2>
+                <h2 class="font-black text-lg text-gray-800 flex items-center gap-2">Day 5 &#8211; 3/3 (二) 回程日 <span id="weather-day-5" class="text-[11px] font-normal bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full whitespace-nowrap"></span></h2>
                 <p class="text-xs text-gray-400">上午輕鬆逛 &#x2022; 下午 Outlet（待確認）&#x2022; 20:45 起飛</p>
             </div>
         </div>
@@ -1739,39 +1739,101 @@ tabs.forEach(tab => {
     });
 });
 
-// ===== Weather API =====
+// ===== Weather API (Open-Meteo, 免費不用 key) =====
 const cities = {
     osaka: { lat: 34.6937, lon: 135.5023, name: '大阪' },
     kyoto: { lat: 35.0116, lon: 135.7681, name: '京都' },
     nara:  { lat: 34.6851, lon: 135.8048, name: '奈良' }
 };
+const weatherIcons = { 0:'☀️', 1:'🌤️', 2:'⛅', 3:'☁️', 45:'🌫️', 48:'🌫️', 51:'🌦️', 53:'🌦️', 55:'🌧️', 61:'🌧️', 63:'🌧️', 65:'🌧️', 71:'🌨️', 73:'🌨️', 80:'🌦️', 81:'🌧️', 95:'⛈️' };
+const weatherDesc = { 0:'晴天', 1:'大致晴', 2:'多雲', 3:'陰天', 45:'霧', 48:'霧', 51:'小雨', 53:'中雨', 55:'大雨', 61:'小雨', 63:'中雨', 65:'大雨', 71:'小雪', 73:'中雪', 80:'陣雨', 81:'大陣雨', 95:'雷雨' };
+
+// 每天對應的城市（抓該城市的天氣）
+const tripDays = [
+    { date: '2026-02-26', city: 'osaka', id: 0 },
+    { date: '2026-02-27', city: 'nara',  id: 1 },
+    { date: '2026-02-28', city: 'osaka', id: 2 },
+    { date: '2026-03-01', city: 'kyoto', id: 3 },
+    { date: '2026-03-02', city: 'kyoto', id: 4 },
+    { date: '2026-03-03', city: 'osaka', id: 5 },
+];
 
 async function fetchWeather() {
     try {
-        const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${cities.osaka.lat}&longitude=${cities.osaka.lon}&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode&timezone=Asia/Tokyo&forecast_days=7`);
-        const data = await res.json();
-        const today = data.daily;
-        const icons = { 0:'☀️', 1:'🌤️', 2:'⛅', 3:'☁️', 45:'🌫️', 48:'🌫️', 51:'🌦️', 53:'🌦️', 55:'🌧️', 61:'🌧️', 63:'🌧️', 65:'🌧️', 71:'🌨️', 73:'🌨️', 80:'🌦️', 81:'🌧️', 95:'⛈️' };
-        const icon = icons[today.weathercode[0]] || '☁️';
-        document.getElementById('weather-now').innerHTML = `${icon} ${today.temperature_2m_min[0]}°/${today.temperature_2m_max[0]}°`;
+        // 同時抓 3 個城市的天氣（parallel）
+        const weatherData = {};
+        await Promise.all(Object.entries(cities).map(async ([key, city]) => {
+            const res = await fetch(
+                `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}` +
+                `&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode` +
+                `&timezone=Asia/Tokyo&start_date=2026-02-26&end_date=2026-03-03`
+            );
+            const json = await res.json();
+            weatherData[key] = json.daily;
+        }));
 
+        // 頂部小泡泡：顯示今天大阪天氣
+        const osakaData = weatherData.osaka;
+        if (osakaData && osakaData.time && osakaData.time.length > 0) {
+            const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Tokyo' });
+            const todayIdx = osakaData.time.indexOf(todayStr);
+            const idx = todayIdx >= 0 ? todayIdx : 0;
+            const icon = weatherIcons[osakaData.weathercode[idx]] || '☁️';
+            document.getElementById('weather-now').innerHTML = `${icon} ${osakaData.temperature_2m_min[idx]}°/${osakaData.temperature_2m_max[idx]}°`;
+        }
+
+        // 每天日期旁邊的天氣 badge
+        tripDays.forEach(day => {
+            const cityData = weatherData[day.city];
+            if (!cityData || !cityData.time) return;
+            const idx = cityData.time.indexOf(day.date);
+            if (idx === -1) return;
+
+            const code = cityData.weathercode[idx];
+            const icon = weatherIcons[code] || '☁️';
+            const desc = weatherDesc[code] || '';
+            const min = Math.round(cityData.temperature_2m_min[idx]);
+            const max = Math.round(cityData.temperature_2m_max[idx]);
+            const rain = cityData.precipitation_probability_max[idx];
+            const rainColor = rain > 70 ? 'text-red-500 font-bold' : rain > 40 ? 'text-amber-600' : '';
+            const cityName = cities[day.city].name;
+
+            const el = document.getElementById(`weather-day-${day.id}`);
+            if (el) {
+                el.innerHTML = `${icon} ${cityName} ${min}°/${max}° ${desc} <span class="${rainColor}">☔${rain}%</span>`;
+            }
+        });
+
+        // 天氣面板（展開版）
         let html = '';
-        today.time.forEach((t, i) => {
-            const d = new Date(t);
+        tripDays.forEach(day => {
+            const cityData = weatherData[day.city];
+            if (!cityData || !cityData.time) return;
+            const idx = cityData.time.indexOf(day.date);
+            if (idx === -1) return;
+            const d = new Date(day.date + 'T00:00:00+09:00');
             const dateStr = `${d.getMonth()+1}/${d.getDate()}`;
-            const ic = icons[today.weathercode[i]] || '☁️';
-            const rain = today.precipitation_probability_max[i];
+            const code = cityData.weathercode[idx];
+            const ic = weatherIcons[code] || '☁️';
+            const rain = cityData.precipitation_probability_max[idx];
             const rainClass = rain > 70 ? 'text-red-600 font-bold' : rain > 40 ? 'text-yellow-600' : 'text-green-600';
             html += `<div class="flex items-center justify-between text-xs py-1 border-b border-gray-100">
-                <span class="w-10">${dateStr}</span>
-                <span>${ic}</span>
-                <span>${today.temperature_2m_min[i]}°~${today.temperature_2m_max[i]}°</span>
+                <span class="w-12 font-bold">${dateStr}</span>
+                <span class="w-8 text-center">${ic}</span>
+                <span class="text-gray-500 w-10">${cities[day.city].name}</span>
+                <span>${cityData.temperature_2m_min[idx]}°~${cityData.temperature_2m_max[idx]}°</span>
                 <span class="${rainClass}">☔${rain}%</span>
             </div>`;
         });
         document.getElementById('weather-data').innerHTML = html;
+
     } catch(e) {
         document.getElementById('weather-now').innerHTML = '⚠️ 離線';
+        // 離線時顯示提示
+        tripDays.forEach(day => {
+            const el = document.getElementById(`weather-day-${day.id}`);
+            if (el) el.innerHTML = '⏳ 載入中...';
+        });
     }
 }
 fetchWeather();
