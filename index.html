@@ -1637,20 +1637,124 @@
 
         <!-- Weather -->
         <div class="bg-white rounded-xl p-4 shadow-sm border border-blue-100">
-            <h3 class="font-bold text-blue-800 flex items-center gap-2">&#127782;&#65039; 天氣 & 穿搭</h3>
+            <h3 class="font-bold text-blue-800 flex items-center gap-2">&#127782;&#65039; 天氣總覽</h3>
             <div class="mt-3 text-xs text-gray-700 space-y-2">
                 <div class="grid grid-cols-3 gap-2 text-center">
                     <div class="p-2 bg-green-50 rounded-lg"><p class="font-bold">2/26-27</p><p>&#9728;&#65039; 晴 15-16°C</p><p class="text-green-600 font-bold">最佳戶外日</p></div>
                     <div class="p-2 bg-yellow-50 rounded-lg"><p class="font-bold">2/28-3/1</p><p>&#9729;&#65039; 多雲 10-14°C</p><p class="text-yellow-600 font-bold">2/28 強風</p></div>
                     <div class="p-2 bg-red-50 rounded-lg"><p class="font-bold">3/2-3/3</p><p>&#127783;&#65039; 陰→雨</p><p class="text-red-600 font-bold">3/3 大雨！</p></div>
                 </div>
+                <p class="text-[9px] text-gray-400 text-center">&#9889; 各天日期旁有即時 API 天氣，以上為概略參考</p>
+            </div>
+        </div>
+
+        <!-- Clothing Guide -->
+        <div class="bg-white rounded-xl p-4 shadow-sm border border-amber-100">
+            <h3 class="font-bold text-amber-800 flex items-center gap-2">&#128087; 穿搭完整攻略</h3>
+            <div class="mt-3 text-xs text-gray-700 space-y-3">
+
+                <!-- Temperature reference -->
                 <div class="p-3 bg-amber-50 rounded-lg">
-                    <p class="font-bold text-amber-800">&#128087; 穿搭建議</p>
-                    <p>&#x2022; 洋蔥式穿搭：HEATTECH + 針織/毛衣 + 防風外套</p>
-                    <p>&#x2022; Slip-on 運動鞋（寺廟要脫鞋）+ 厚羊毛襪</p>
-                    <p>&#x2022; 帶折疊傘 + 暖暖包</p>
-                    <p>&#x2022; 京都寺廟木地板很冰，厚襪子必備！</p>
+                    <p class="font-bold text-amber-900 mb-2">&#127777; 溫度體感對照（給台灣人的翻譯）</p>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="p-2 bg-green-50 rounded text-center">
+                            <p class="font-bold text-green-700">15°C+</p>
+                            <p>涼涼的，舒服</p>
+                            <p class="text-green-600 text-[10px]">長袖+薄外套</p>
+                        </div>
+                        <div class="p-2 bg-yellow-50 rounded text-center">
+                            <p class="font-bold text-yellow-700">10~14°C</p>
+                            <p>有點冷</p>
+                            <p class="text-yellow-600 text-[10px]">毛衣+外套+圍巾</p>
+                        </div>
+                        <div class="p-2 bg-orange-50 rounded text-center">
+                            <p class="font-bold text-orange-700">5~9°C</p>
+                            <p>冷！要穿暖</p>
+                            <p class="text-orange-600 text-[10px]">發熱衣+毛衣+羽絨</p>
+                        </div>
+                        <div class="p-2 bg-red-50 rounded text-center">
+                            <p class="font-bold text-red-700">0~4°C</p>
+                            <p>很冷</p>
+                            <p class="text-red-600 text-[10px]">全副武裝</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 text-[10px] mt-2">&#128161; 日本是<strong>乾冷</strong>，風吹比較刺但不濕黏。體感溫度 = 氣溫再扣 2~3°C（有風時更低）</p>
                 </div>
+
+                <!-- Layering guide -->
+                <div class="p-3 bg-blue-50 rounded-lg">
+                    <p class="font-bold text-blue-900 mb-2">&#129507; 洋蔥式穿法（這趟照穿）</p>
+                    <div class="space-y-2">
+                        <div class="flex gap-2 items-start">
+                            <span class="bg-red-100 text-red-700 px-1.5 py-0.5 rounded text-[10px] font-bold whitespace-nowrap">內層</span>
+                            <p>UNIQLO <strong>HEATTECH 極暖</strong>（帶 2~3 件替換）</p>
+                        </div>
+                        <div class="flex gap-2 items-start">
+                            <span class="bg-yellow-100 text-yellow-700 px-1.5 py-0.5 rounded text-[10px] font-bold whitespace-nowrap">中層</span>
+                            <p><strong>針織毛衣</strong> or 刷毛帽T</p>
+                        </div>
+                        <div class="flex gap-2 items-start">
+                            <span class="bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded text-[10px] font-bold whitespace-nowrap">外層</span>
+                            <div>
+                                <p><strong>輕羽絨外套</strong>（可收納型最好！白天暖了塞包包）</p>
+                                <p class="text-gray-500">或舖棉大衣 &#x2022; 3/3 回程日帶<strong>防水外套</strong></p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2 items-start">
+                            <span class="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-[10px] font-bold whitespace-nowrap">下身</span>
+                            <div>
+                                <p>&#128102; 厚牛仔褲 or 長褲</p>
+                                <p>&#128103; <strong>80D 褲襪</strong> + 寬褲（怕冷再加發熱褲襪）</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2 items-start">
+                            <span class="bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded text-[10px] font-bold whitespace-nowrap">腳</span>
+                            <div>
+                                <p><strong>好走的運動鞋</strong>（Slip-on 方便，寺廟要脫鞋）</p>
+                                <p><strong>厚羊毛襪</strong> &#x2022; 京都寺廟木地板超冰，厚襪必備！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accessories -->
+                <div class="p-3 bg-pink-50 rounded-lg">
+                    <p class="font-bold text-pink-900 mb-2">&#127880; 必帶配件</p>
+                    <div class="grid grid-cols-2 gap-2">
+                        <p>&#129507; <strong>圍巾</strong> &#8211; 京都寺廟風超大，有圍巾差很多</p>
+                        <p>&#128293; <strong>暖暖包</strong> &#8211; 日本便利商店買 &#165;100/包 超便宜</p>
+                        <p>&#9748; <strong>折疊傘</strong> &#8211; 3/1 後降雨機率升高</p>
+                        <p>&#129507; <strong>厚襪 x3</strong> &#8211; 脫鞋踩木地板救星</p>
+                    </div>
+                </div>
+
+                <!-- Per-day tips -->
+                <div class="p-3 bg-gray-50 rounded-lg">
+                    <p class="font-bold text-gray-900 mb-2">&#128197; 每日穿搭重點</p>
+                    <div class="space-y-1.5">
+                        <div class="flex gap-2">
+                            <span class="text-[10px] font-bold text-green-700 whitespace-nowrap w-12">2/27 奈良</span>
+                            <p>晴天但奈良公園<strong>風超大</strong> &#8594; 羽絨+圍巾 &#x2022; 白天有太陽暖和可脫外套</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="text-[10px] font-bold text-yellow-700 whitespace-nowrap w-12">2/28 大阪</span>
+                            <p><strong>春一番強風日</strong> &#8594; 穿最暖那套！體感更冷 &#x2022; 防風外套優先</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="text-[10px] font-bold text-blue-700 whitespace-nowrap w-12">3/1 京都</span>
+                            <p>嵐山清晨冷 &#8594; 全套洋蔥 &#x2022; 下午清水寺可能回暖脫一層</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="text-[10px] font-bold text-pink-700 whitespace-nowrap w-12">3/2 和服</span>
+                            <p><strong>V 領 HEATTECH</strong>（圓領會露出！）&#x2022; 發熱褲襪 &#x2022; 足袋襪（木屐需腳趾分開）</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="text-[10px] font-bold text-red-700 whitespace-nowrap w-12">3/3 回程</span>
+                            <p><strong>全日大雨</strong> &#8594; 防水外套/雨衣 &#x2022; Outlets 是戶外商場要撐傘走</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
