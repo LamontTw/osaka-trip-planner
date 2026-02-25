@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2026 關西之旅 - 大阪 京都 奈良</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sakura: { 50:'#fff5f7', 100:'#ffe0e6', 200:'#ffc2d1', 300:'#ff9fb5', 400:'#ff7096', 500:'#ff4778' },
+            matcha: { 50:'#f0faf0', 100:'#d4f0d4', 200:'#a8dba8', 300:'#7bc67b', 400:'#4caf50', 500:'#388e3c' },
+            kinako: { 50:'#fefcf3', 100:'#fdf6e3', 200:'#faecc7', 300:'#f5dfa0', 400:'#efd07a', 500:'#d4a843' },
+          }
+        }
+      }
+    }
+    </script>
+    <style>
+        * { font-family: 'Noto Sans TC', 'Zen Maru Gothic', sans-serif; box-sizing: border-box; }
+        body { background: linear-gradient(135deg, #fff5f7 0%, #fefcf3 50%, #f0faf0 100%); min-height: 100vh; }
+        .cute-title { font-family: 'Zen Maru Gothic', sans-serif; }
+        .day-tab { transition: all 0.3s; border-bottom: 3px solid transparent; }
+        .day-tab.active { border-bottom-color: #ff4778; color: #ff4778; font-weight: 700; }
+        .day-tab:not(.active):hover { border-bottom-color: #ffc2d1; }
+        .timeline-line { position: absolute; left: 20px; top: 40px; bottom: 0; width: 2px; background: linear-gradient(to bottom, #ffc2d1, #a8dba8); }
+        .timeline-dot { width: 12px; height: 12px; border-radius: 50%; position: absolute; left: 15px; top: 16px; border: 2px solid white; box-shadow: 0 0 0 2px currentColor; }
+        .card-event { transition: all 0.3s ease; border-left: 4px solid; }
+        .card-event:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .tag-fixed { background: #ff4778; color: white; }
+        .tag-food { background: #f59e0b; color: white; }
+        .tag-sight { background: #10b981; color: white; }
+        .tag-transport { background: #3b82f6; color: white; }
+        .tag-salon { background: #a855f7; color: white; }
+        .tag-hotel { background: #6366f1; color: white; }
+        .tag-photo { background: #ec4899; color: white; }
+        .tag-shopping { background: #f97316; color: white; }
+        .tag-tbd { background: #94a3b8; color: white; }
+        details summary { list-style: none; }
+        details summary::-webkit-details-marker { display: none; }
+        details[open] summary .arrow-icon { transform: rotate(180deg); }
+        details summary .arrow-icon { transition: transform 0.2s; display: inline-block; }
+        .alt-option { border: 2px dashed #e2e8f0; background: #fefefe; }
+        .alt-option.selected { border-color: #ff4778; background: #fff5f7; }
+        .weather-icon { font-size: 1.5rem; }
+        .note-area { resize: vertical; min-height: 60px; }
+        .map-btn { display: inline-flex; align-items: center; gap: 4px; background: white; border: 1px solid #e2e8f0; padding: 3px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; color: #1e293b; text-decoration: none; transition: all 0.2s; }
+        .map-btn:hover { background: #f1f5f9; border-color: #3b82f6; }
+        .sync-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+        .sync-dot.connected { background: #10b981; animation: pulse 2s infinite; }
+        .sync-dot.disconnected { background: #ef4444; }
+        @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.5; } }
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        .float-anim { animation: float 3s ease-in-out infinite; }
+        .transport-box { background: linear-gradient(135deg, #eff6ff, #f0fdf4); border: 1px solid #bfdbfe; }
+        .food-box { background: linear-gradient(135deg, #fffbeb, #fff7ed); border: 1px solid #fde68a; }
+        .salon-box { background: linear-gradient(135deg, #faf5ff, #fdf2f8); border: 1px solid #e9d5ff; }
+        .packing-item { transition: all 0.2s; }
+        .packing-item.checked { opacity: 0.5; text-decoration: line-through; }
+        .day-panel { display: none; }
+        .day-panel.active { display: block; }
+        /* scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #ffc2d1; border-radius: 2px; }
+    </style>
+</head>
+<body class="pb-20">
+
+<!-- ===== HEADER ===== -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-sakura-100">
+    <div class="max-w-lg mx-auto px-4 py-3">
+        <div class="flex items-center justify-between">
+            <div>
+                <h1 class="cute-title text-xl font-black text-sakura-500 flex items-center gap-1">
+                    <span class="float-anim inline-block">&#127849;</span> 2026 關西之旅
+                </h1>
+                <p class="text-[10px] text-gray-400 mt-0.5">2/26(四) - 3/3(二) &#x2708;&#xFE0F; 大阪・京都・奈良</p>
+            </div>
+            <div class="flex items-center gap-2">
+                <div id="weather-now" class="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-full cursor-pointer" onclick="toggleWeatherPanel()">&#9728;&#65039; --°</div>
+                <button onclick="toggleSettings()" class="text-gray-400 hover:text-sakura-500 text-lg">&#9881;&#65039;</button>
+            </div>
+        </div>
+        <!-- Day Tabs -->
+        <div class="flex gap-1 mt-3 overflow-x-auto pb-1 -mx-1 px-1" id="day-tabs">
+            <button class="day-tab text-xs px-3 py-1.5 whitespace-nowrap rounded-t active" data-day="0">2/26<br><span class="text-[9px]">抵達</span></button>
+            <button class="day-tab text-xs px-3 py-1.5 whitespace-nowrap rounded-t" data-day="1">2/27<br><span class="text-[9px]">奈良</span></button>
+            <button class="day-tab text-xs px-3 py-1.5 whitespace-nowrap rounded-t" data-day="2">2/28<br><span class="text-[9px]">大阪</span></button>
+            <button class="day-tab text-xs px-3 py-1.5 whitespace-nowrap rounded-t" data-day="3">3/1<br><span class="text-[9px]">京都1</span></button>
+            <button class="day-tab text-xs px-3 py-1.5 whitespace-nowrap rounded-t" data-day="4">3/2<br><span class="text-[9px]">京都2</span></button>
+            <button class="day-tab text-xs px-3 py-1.5 whitespace-nowrap rounded-t" data-day="5">3/3<br><span class="text-[9px]">回程</span></button>
+            <button class="day-tab text-xs px-3 py-1.5 whitespace-nowrap rounded-t" data-day="info">&#128221;<br><span class="text-[9px]">資訊</span></button>
+        </div>
+    </div>
+</header>
+
+<!-- ===== WEATHER PANEL ===== -->
+<div id="weather-panel" class="hidden fixed top-20 left-0 right-0 z-40 max-w-lg mx-auto px-4">
+    <div class="bg-white rounded-xl shadow-xl border border-blue-100 p-4">
+        <h3 class="font-bold text-sm text-blue-800 mb-2">&#127782;&#65039; 一週天氣預報</h3>
+        <div id="weather-grid" class="grid grid-cols-3 gap-2 text-xs">
+            <div class="text-center font-bold text-gray-500">大阪</div>
+            <div class="text-center font-bold text-gray-500">京都</div>
+            <div class="text-center font-bold text-gray-500">奈良</div>
+        </div>
+        <div id="weather-data" class="mt-2 space-y-1"></div>
+        <p class="text-[9px] text-gray-400 mt-2 text-center">&#9889; 資料來自 Open-Meteo API，即時更新</p>
+    </div>
+</div>
+
+<!-- ===== SETTINGS PANEL ===== -->
+<div id="settings-panel" class="hidden fixed top-20 right-4 z-40 w-72">
+    <div class="bg-white rounded-xl shadow-xl border border-gray-200 p-4">
+        <h3 class="font-bold text-sm mb-3">&#9881;&#65039; 協作設定</h3>
+        <div class="space-y-3">
+            <div>
+                <label class="text-xs text-gray-500 block mb-1">npoint.io 端點 ID（兩人填同一個）</label>
+                <input type="text" id="npoint-id" class="w-full border rounded-lg px-3 py-1.5 text-sm" placeholder="例：abc123def456" oninput="saveSettings()">
+                <p class="text-[9px] text-gray-400 mt-1">到 <a href="https://www.npoint.io/" target="_blank" class="text-blue-500 underline">npoint.io</a> 免費建立一個 JSON 端點，貼上 ID</p>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="cloudSave()" class="flex-1 bg-sakura-500 text-white text-xs py-1.5 rounded-lg hover:bg-sakura-400">&#9729;&#65039; 上傳到雲端</button>
+                <button onclick="cloudLoad()" class="flex-1 bg-blue-500 text-white text-xs py-1.5 rounded-lg hover:bg-blue-400">&#11015;&#65039; 從雲端載入</button>
+            </div>
+            <div id="sync-status" class="text-[10px] text-gray-400 text-center"></div>
+            <hr>
+            <button onclick="exportJSON()" class="w-full bg-gray-100 text-gray-600 text-xs py-1.5 rounded-lg hover:bg-gray-200">&#128190; 匯出 JSON 備份</button>
+            <label class="w-full block bg-gray-100 text-gray-600 text-xs py-1.5 rounded-lg hover:bg-gray-200 text-center cursor-pointer">
+                &#128194; 匯入 JSON 備份
+                <input type="file" accept=".json" class="hidden" onchange="importJSON(event)">
+            </label>
+        </div>
+    </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="max-w-lg mx-auto px-4 pt-4">
+
+<!-- ===== DAY 0: 2/26 ARRIVAL ===== -->
+<div class="day-panel active" id="day-0">
+    <div class="mb-4">
+        <div class="flex items-center gap-2 mb-1">
+            <span class="text-2xl">&#9992;&#65039;</span>
+            <div>
+                <h2 class="font-black text-lg text-gray-800">Day 0 &#8211; 2/26 (四) 抵達日</h2>
+                <p class="text-xs text-gray-400">KIX &#8594; APA Hotel &#8594; 新世界探索</p>
+            </div>
+        </div>
+        <div class="bg-amber-50 border border-amber-200 rounded-lg p-2 text-xs text-amber-800 mt-2">
+            &#9888;&#65039; <strong>23:00（日本時間）有 LINE 會議</strong>｜台灣時間 22:00 = 日本 23:00，到飯店約 21:30，有充足時間吃完再開會
+        </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="space-y-4">
+        <!-- Flight -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-blue-400">
+            <div class="flex items-start justify-between">
+                <div>
+                    <span class="tag-fixed text-[10px] px-2 py-0.5 rounded-full font-bold">固定</span>
+                    <h3 class="font-bold mt-1">&#9992;&#65039; D7 378 桃園 &#8594; 關西</h3>
+                    <p class="text-xs text-gray-500 mt-1">TPE 15:40 出發 &#8594; <strong>KIX 19:20 抵達</strong></p>
+                    <p class="text-xs text-gray-400">AirAsia X &#x2022; 直飛 &#x2022; 約 3h40m</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transport to hotel -->
+        <div class="transport-box rounded-xl p-4">
+            <h4 class="font-bold text-sm text-blue-800 mb-1">&#128647; KIX &#8594; 飯店 交通</h4>
+            <p class="text-xs text-gray-500 mb-2">19:20 落地 &#8594; 出關約 40~60 分 &#8594; 預計 <strong>21:30 抵達飯店</strong></p>
+
+            <!-- Route A: 推薦 -->
+            <details class="mb-3 border border-blue-200 rounded-lg overflow-hidden">
+                <summary class="flex items-center gap-2 p-3 bg-blue-50 cursor-pointer hover:bg-blue-100 transition">
+                    <span class="bg-blue-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">推薦路線</span>
+                    <span class="text-xs font-bold text-blue-800 flex-1">南海空港急行 &#8594; 新今宮 &#8594; 步行</span>
+                    <span class="text-[10px] text-blue-600 font-bold">&#165;970 &#x2022; 58 分</span>
+                    <span class="text-gray-400 text-xs arrow-icon">&#9660;</span>
+                </summary>
+                <div class="p-3 text-xs text-gray-700 space-y-3 bg-white">
+                    <!-- Step 1 -->
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">1</div>
+                            <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">KIX 第一航廈 &#8594; 南海電鐵月台</p>
+                            <p class="text-gray-500">出海關後往左走，跟著「南海 Nankai」指標。在 2F 售票機買票或直接刷 ICOCA 進站</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 步行約 5 分</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Kansai+Airport+Station+Nankai" target="_blank" class="map-btn mt-1">&#128205; KIX 南海站</a>
+                        </div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">2</div>
+                            <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">搭「空港急行」&#8594; 新今宮站</p>
+                            <p class="text-gray-500">不需指定席，ICOCA 直接刷進月台。列車約每 30 分一班</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 車程約 46 分 &#x2022; &#165;970</p>
+                            <p class="text-blue-600 text-[10px] font-bold mt-1">&#128161; 別搭錯成 Rapi:t（紫色車身），空港急行是一般銀色列車，不用加價</p>
+                        </div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">3</div>
+                            <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">新今宮站 東出口 &#8594; 步行到飯店</p>
+                            <p class="text-gray-500">出站後往東走，沿著「惠美須町」方向直行。經過通天閣旁邊，看到新世界商店街就快到了</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 步行約 12 分</p>
+                            <div class="flex gap-2 mt-1 flex-wrap">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Shin-Imamiya+Station" target="_blank" class="map-btn">&#128205; 新今宮站</a>
+                                <a href="https://www.google.com/maps/dir/Shin-Imamiya+Station/APA+Hotel+Namba+Minami+Ebisucho+Osaka" target="_blank" class="map-btn">&#128694; 步行導航</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-7 h-7 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-bold text-green-700">抵達 APA Hotel 難波南 惠美須町站</p>
+                            <p class="text-gray-500">預計 ~21:16 到新今宮 &#8594; ~21:30 到飯店 check in</p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Route B: 快速 -->
+            <details class="border border-gray-200 rounded-lg overflow-hidden">
+                <summary class="flex items-center gap-2 p-3 bg-gray-50 cursor-pointer hover:bg-gray-100 transition">
+                    <span class="bg-purple-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">快速路線</span>
+                    <span class="text-xs font-bold text-gray-700 flex-1">南海 Rapi:t 特急 &#8594; 難波 &#8594; 地鐵</span>
+                    <span class="text-[10px] text-purple-600 font-bold">&#165;1,450 &#x2022; 45 分</span>
+                    <span class="text-gray-400 text-xs arrow-icon">&#9660;</span>
+                </summary>
+                <div class="p-3 text-xs text-gray-700 space-y-3 bg-white">
+                    <!-- Step 1 -->
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-7 h-7 rounded-full bg-purple-600 text-white flex items-center justify-center text-[10px] font-bold">1</div>
+                            <div class="w-0.5 flex-1 bg-purple-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">KIX &#8594; 南海電鐵售票處買 Rapi:t 票</p>
+                            <p class="text-gray-500">需在售票窗口或自動售票機購買<strong>指定席特急券</strong>（ICOCA 只能付基本運賃，特急券 &#165;520 需另付）</p>
+                            <p class="text-gray-400 text-[10px]">總計：基本 &#165;930 + 特急 &#165;520 = <strong>&#165;1,450</strong></p>
+                            <p class="text-purple-600 text-[10px] mt-1">&#128161; Rapi:t 是紫色流線型列車，座位寬敞舒適，有行李架</p>
+                        </div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-7 h-7 rounded-full bg-purple-600 text-white flex items-center justify-center text-[10px] font-bold">2</div>
+                            <div class="w-0.5 flex-1 bg-purple-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">搭 Rapi:t &#8594; 南海難波站</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 車程約 34 分 &#x2022; 直達 &#x2022; 全車指定席</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Nankai+Namba+Station" target="_blank" class="map-btn mt-1">&#128205; 南海難波站</a>
+                        </div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-7 h-7 rounded-full bg-purple-600 text-white flex items-center justify-center text-[10px] font-bold">3</div>
+                            <div class="w-0.5 flex-1 bg-purple-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">南海難波 &#8594; 地鐵難波站 &#8594; 惠美須町站</p>
+                            <p class="text-gray-500">出南海改札口，跟著「大阪Metro」指標走 &#8594; 御堂筋線/千日前線到難波 &#8594; 轉堺筋線到惠美須町（1~2 站）</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 轉乘步行 + 車程共約 10~15 分 &#x2022; &#165;190</p>
+                            <p class="text-red-500 text-[10px] mt-1">&#9888; 難波站地下很大容易迷路！跟著「堺筋線」指標走</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Ebisucho+Station+Osaka" target="_blank" class="map-btn mt-1">&#128205; 惠美須町站</a>
+                        </div>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-7 h-7 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-bold text-green-700">惠美須町站 2 號出口 &#8594; 步行 1 分到飯店</p>
+                            <a href="https://www.google.com/maps/dir/Ebisucho+Station/APA+Hotel+Namba+Minami+Ebisucho+Osaka" target="_blank" class="map-btn mt-1">&#128694; 步行導航</a>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Quick action: full route navigation -->
+            <div class="mt-3 flex gap-2 flex-wrap">
+                <a href="https://www.google.com/maps/dir/Kansai+International+Airport/APA+Hotel+Namba+Minami+Ebisucho+Osaka" target="_blank" class="map-btn bg-blue-50 border-blue-300 text-blue-700">&#128205; KIX &#8594; 飯店 完整導航</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Kansai+International+Airport+Terminal+1" target="_blank" class="map-btn">&#9992;&#65039; KIX 第一航廈</a>
+            </div>
+        </div>
+
+        <!-- Hotel -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-indigo-400">
+            <span class="tag-hotel text-[10px] px-2 py-0.5 rounded-full font-bold">住宿</span>
+            <h3 class="font-bold mt-1">&#127976; APA Hotel 難波南 惠美須町站</h3>
+            <p class="text-xs text-gray-500 mt-1">浪速區日本橋 5-6-14 &#x2022; 惠美須町站步行 1 分</p>
+            <p class="text-xs text-gray-400">2/26 ~ 3/1 每晚 & 3/2 晚</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=APA+Hotel+Namba+Minami+Ebisucho+Osaka" target="_blank" class="map-btn mt-2">&#128205; Google Map</a>
+        </div>
+
+        <!-- Shinsekai Night -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-green-400">
+            <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
+            <span class="tag-food text-[10px] px-2 py-0.5 rounded-full font-bold ml-1">美食</span>
+            <h3 class="font-bold mt-1">&#127751; 新世界夜遊 + 晚餐</h3>
+            <p class="text-xs text-gray-500 mt-1">21:45 ~ 22:45（飯店走路 2 分鐘）&#8594; 23:00 前回房開會</p>
+            <div class="food-box rounded-lg p-3 mt-2">
+                <p class="text-xs font-bold text-amber-800">&#127860; 推薦晚餐</p>
+                <div class="text-xs text-gray-700 mt-1 space-y-1">
+                    <p>&#x2022; <strong>八重勝（Yaekatsu）串炸</strong> &#8211; 新世界老字號，麵衣酥脆 &#165;1,000~2,000/人</p>
+                    <p>&#x2022; <strong>串かつだるま</strong> &#8211; 超人氣連鎖，排隊但值得</p>
+                    <p>&#x2022; <strong>新世界かんかん 章魚燒</strong> &#8211; 外酥內軟，在地人推薦</p>
+                    <p class="text-amber-600 text-[10px]">&#9888; 串炸禮儀：醬汁不可二次沾！全部都是熟食，女友安心吃 &#10004;</p>
+                </div>
+            </div>
+            <div class="flex gap-2 mt-2">
+                <a href="https://www.google.com/maps/search/?api=1&query=Shinsekai+Osaka" target="_blank" class="map-btn">&#128205; 新世界</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Tsutenkaku" target="_blank" class="map-btn">&#128205; 通天閣</a>
+            </div>
+        </div>
+
+        <!-- Day Notes -->
+        <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+            <h4 class="text-xs font-bold text-gray-500 mb-2">&#128221; 備忘錄</h4>
+            <textarea class="note-area w-full border border-gray-200 rounded-lg p-2 text-xs" placeholder="記點什麼..." data-note="day0"></textarea>
+        </div>
+    </div>
+</div>
+
+<!-- ===== DAY 1: 2/27 NARA ===== -->
+<div class="day-panel" id="day-1">
+    <div class="mb-4">
+        <div class="flex items-center gap-2 mb-1">
+            <span class="text-2xl">&#129420;</span>
+            <div>
+                <h2 class="font-black text-lg text-gray-800">Day 1 &#8211; 2/27 (五) 奈良日</h2>
+                <p class="text-xs text-gray-400">餵鹿 &#x2022; 東大寺 &#x2022; 春日大社 &#x2022; 梅花 &#x2022; 奈良町</p>
+            </div>
+        </div>
+        <div class="bg-green-50 border border-green-200 rounded-lg p-2 text-xs text-green-800 mt-2">
+            &#127793; <strong>天氣超棒！</strong>晴天 15-16°C，最佳戶外日。片岡梅林正值盛開期！
+        </div>
+    </div>
+
+    <div class="space-y-4">
+        <!-- Transport to Nara -->
+        <div class="transport-box rounded-xl p-4">
+            <h4 class="font-bold text-sm text-blue-800 mb-2">&#128647; 惠美須町 &#8594; 近鉄奈良</h4>
+            <details class="border border-blue-200 rounded-lg overflow-hidden">
+                <summary class="flex items-center gap-2 p-3 bg-blue-50 cursor-pointer hover:bg-blue-100 transition">
+                    <span class="bg-blue-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">去程</span>
+                    <span class="text-xs font-bold text-blue-800 flex-1">堺筋線 &#8594; 近鉄奈良線快速急行</span>
+                    <span class="text-[10px] text-blue-600 font-bold">&#165;870 &#x2022; 45 分</span>
+                    <span class="text-gray-400 text-xs arrow-icon">&#9660;</span>
+                </summary>
+                <div class="p-3 text-xs text-gray-700 space-y-3 bg-white">
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">1</div>
+                            <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">07:45 惠美須町站 &#8594; 堺筋線（北行）</p>
+                            <p class="text-gray-500">2 號出口進站，搭往天神橋筋六丁目方向</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 1 站 2 分 &#8594; <strong>日本橋站</strong>下車</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Ebisucho+Station+Osaka" target="_blank" class="map-btn mt-1">&#128205; 惠美須町站</a>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">2</div>
+                            <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">日本橋站 &#8594; 地下通道轉 近鉄日本橋站</p>
+                            <p class="text-gray-500">出地鐵改札，跟著「近鉄 Kintetsu」指標走地下通道（不用出地面）</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 步行 2~5 分</p>
+                            <p class="text-blue-600 text-[10px] mt-1">&#128161; 近鉄改札口刷 ICOCA 進站即可</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">3</div>
+                            <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">搭「近鉄奈良線 快速急行」&#8594; 近鉄奈良站</p>
+                            <p class="text-gray-500">月台上看電子看板，搭「快速急行」或「急行」往奈良方向。ICOCA 直接刷</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 車程約 35~38 分 &#x2022; 直達不用轉車</p>
+                            <p class="text-red-500 text-[10px] mt-1">&#9888; 別搭「特急」（紫色車身），需加購特急券！快速急行免費且一樣快</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-7 h-7 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-bold text-green-700">~08:30 抵達近鉄奈良站</p>
+                            <p class="text-gray-500">出站後直走 5 分鐘就到奈良公園，路上有很多鹿出來迎接你！</p>
+                            <div class="flex gap-2 mt-1 flex-wrap">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Kintetsu+Nara+Station" target="_blank" class="map-btn">&#128205; 近鉄奈良站</a>
+                                <a href="https://www.google.com/maps/dir/Ebisucho+Station+Osaka/Kintetsu+Nara+Station" target="_blank" class="map-btn">&#128205; 完整路線導航</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </details>
+        </div>
+
+        <!-- Nara Park -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-green-400">
+            <div class="flex justify-between items-start">
+                <div>
+                    <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-amber-100 text-amber-700 ml-1">你的指定！</span>
+                </div>
+                <label class="flex items-center gap-1 text-[10px] text-gray-400">
+                    <input type="checkbox" data-check="nara-park" class="rounded"> 已去
+                </label>
+            </div>
+            <h3 class="font-bold mt-1">&#129420; 08:40 奈良公園餵鹿</h3>
+            <p class="text-xs text-gray-500 mt-1">近鉄奈良站步行 5 分 &#x2022; 免費 &#x2022; 停留 30~45 分鐘</p>
+            <div class="bg-amber-50 rounded-lg p-2 mt-2 text-xs text-amber-800">
+                <p>&#127856; <strong>鹿仙貝 &#165;200/包</strong>（10片，到處有賣）</p>
+                <p class="mt-1">&#128161; <strong>餵鹿秘訣：</strong></p>
+                <p>&#x2022; 先向鹿鞠躬，牠會回禮，再餵食</p>
+                <p>&#x2022; 買了馬上餵，不要拿著炫耀（鹿會急躁咬衣服！）</p>
+                <p>&#x2022; 餵完攤開手掌心朝外 = 「沒有了」</p>
+                <p>&#x2022; 別跑別尖叫，3月非發情期相對溫和</p>
+                <p>&#x2022; 注意隨身物品：地圖、塑膠袋都可能被吃掉</p>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Nara+Park" target="_blank" class="map-btn mt-2">&#128205; 奈良公園</a>
+        </div>
+
+        <!-- Todai-ji -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-green-400">
+            <div class="flex justify-between items-start">
+                <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
+                <label class="flex items-center gap-1 text-[10px] text-gray-400">
+                    <input type="checkbox" data-check="todaiji" class="rounded"> 已去
+                </label>
+            </div>
+            <h3 class="font-bold mt-1">&#127983; 09:30 東大寺（大佛殿）</h3>
+            <p class="text-xs text-gray-500 mt-1">從公園步行 10~15 分 &#x2022; &#165;800 &#x2022; 08:00~17:00 &#x2022; 停留 45~60 分</p>
+            <p class="text-xs text-gray-400 mt-1">世界最大木造建築，15 公尺高青銅大佛震撼人心</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Todai-ji" target="_blank" class="map-btn mt-2">&#128205; Google Map</a>
+        </div>
+
+        <!-- Nigatsu-do -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-green-400">
+            <div class="flex justify-between items-start">
+                <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
+                <label class="flex items-center gap-1 text-[10px] text-gray-400">
+                    <input type="checkbox" data-check="nigatsu" class="rounded"> 已去
+                </label>
+            </div>
+            <h3 class="font-bold mt-1">&#127747; 10:30 二月堂</h3>
+            <p class="text-xs text-gray-500 mt-1">從東大寺步行 10 分（上坡）&#x2022; 免費 &#x2022; 停留 20 分</p>
+            <p class="text-xs text-gray-400 mt-1">眺望奈良市區全景，清晨光線特別美</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Nigatsu-do+Nara" target="_blank" class="map-btn mt-2">&#128205; Google Map</a>
+        </div>
+
+        <!-- Kasuga Taisha -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-green-400">
+            <div class="flex justify-between items-start">
+                <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
+                <label class="flex items-center gap-1 text-[10px] text-gray-400">
+                    <input type="checkbox" data-check="kasuga" class="rounded"> 已去
+                </label>
+            </div>
+            <h3 class="font-bold mt-1">&#9961;&#65039; 11:00 春日大社</h3>
+            <p class="text-xs text-gray-500 mt-1">從二月堂步行 15~20 分 &#x2022; 外圍免費/本殿 &#165;700 &#x2022; 06:30~17:30 &#x2022; 停留 45~60 分</p>
+            <p class="text-xs text-gray-400 mt-1">3,000 座石燈籠、苔蘚覆蓋的參道，神聖感滿點</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Kasuga+Taisha" target="_blank" class="map-btn mt-2">&#128205; Google Map</a>
+        </div>
+
+        <!-- Ukimido -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-pink-400">
+            <span class="tag-photo text-[10px] px-2 py-0.5 rounded-full font-bold">拍照秘境</span>
+            <h3 class="font-bold mt-1">&#128247; 12:00 浮見堂（鷺池）</h3>
+            <p class="text-xs text-gray-500 mt-1">從春日大社步行 10~15 分（下坡）&#x2022; 免費 &#x2022; 24hr &#x2022; 停留 15~20 分</p>
+            <p class="text-xs text-gray-400 mt-1">六角涼亭浮在池上，倒影極美 &#x2022; 從池塘南側拍最佳</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Ukimido+Nara+Park" target="_blank" class="map-btn mt-2">&#128205; Google Map</a>
+        </div>
+
+        <!-- Kataoka Plum -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-pink-400">
+            <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-pink-100 text-pink-700 ml-1">梅花盛開中！</span>
+            <h3 class="font-bold mt-1">&#127800; 12:30 片岡梅林</h3>
+            <p class="text-xs text-gray-500 mt-1">從浮見堂步行 5 分 &#x2022; 免費 &#x2022; 停留 15~20 分</p>
+            <p class="text-xs text-gray-400 mt-1">250 棵紅白梅 + 鹿群同框 = 奈良早春最美畫面 &#127800;</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Kataoka+Plum+Grove+Nara" target="_blank" class="map-btn mt-2">&#128205; Google Map</a>
+        </div>
+
+        <!-- Lunch -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-amber-400">
+            <span class="tag-food text-[10px] px-2 py-0.5 rounded-full font-bold">午餐</span>
+            <h3 class="font-bold mt-1">&#127860; 13:00 午餐時間</h3>
+            <div class="food-box rounded-lg p-3 mt-2">
+                <div class="space-y-3 text-xs text-gray-700">
+                    <div>
+                        <p class="font-bold text-amber-800">&#11088; 志津香釜飯（しづか）&#8211; 必吃！</p>
+                        <p>奈良七種釜飯 &#165;1,300~1,600 &#x2022; 全部熟食 &#10004;</p>
+                        <p class="text-gray-500">公園店：奈良市登大路町59-11 &#x2022; 平日 11:00~15:00</p>
+                        <p class="text-red-500">&#9888; 超熱門，建議 11:00 前到排隊！現煮需 20 分</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Shizuka+Kamameshi+Nara" target="_blank" class="map-btn mt-1">&#128205; 志津香</a>
+                    </div>
+                    <div>
+                        <p class="font-bold text-amber-800">&#127855; 平宗（ひらそう）&#8211; 有烤鯖魚版本</p>
+                        <p>「朱雀」定食 &#165;2,350 含焼鯖棒壽司（非生食）&#10004;</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Hiraso+Nara" target="_blank" class="map-btn mt-1">&#128205; 平宗</a>
+                    </div>
+                    <div>
+                        <p class="font-bold text-amber-800">&#127860; 其他選項</p>
+                        <p>&#x2022; <strong>うな菊</strong> 鰻魚飯 &#165;2,500~4,000（完全熟食）</p>
+                        <p>&#x2022; <strong>天極堂</strong> 吉野葛料理 &#165;1,000~2,000</p>
+                        <p>&#x2022; <strong>粟 ならまち店</strong> 有機蔬菜+大和牛 &#165;3,000~5,000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Naramachi -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-green-400">
+            <div class="flex justify-between items-start">
+                <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
+                <label class="flex items-center gap-1 text-[10px] text-gray-400">
+                    <input type="checkbox" data-check="naramachi" class="rounded"> 已去
+                </label>
+            </div>
+            <h3 class="font-bold mt-1">&#127983; 14:30 奈良町散步</h3>
+            <p class="text-xs text-gray-500 mt-1">步行 5~10 分 &#x2022; 免費 &#x2022; 停留 60~90 分</p>
+            <p class="text-xs text-gray-400 mt-1">江戶町家老街 &#x2022; 咖啡廳 &#x2022; 手作雜貨 &#x2022; 格子之家 &#x2022; 庚申堂</p>
+            <div class="bg-pink-50 rounded-lg p-2 mt-2 text-xs">
+                <p class="text-pink-800">&#127849; <strong>中谷堂</strong> 高速搗麻糬表演！蓬餅 &#165;200/個（僅收現金）</p>
+                <p class="text-pink-800">&#127854; <strong>大佛布丁</strong> 抹茶/原味/焦糖 &#165;440~1,100</p>
+            </div>
+            <div class="flex gap-2 mt-2">
+                <a href="https://www.google.com/maps/search/?api=1&query=Naramachi" target="_blank" class="map-btn">&#128205; 奈良町</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Nakatanidou+Nara" target="_blank" class="map-btn">&#128205; 中谷堂</a>
+            </div>
+        </div>
+
+        <!-- Kofuku-ji -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-green-400">
+            <div class="flex justify-between items-start">
+                <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
+                <label class="flex items-center gap-1 text-[10px] text-gray-400">
+                    <input type="checkbox" data-check="kofukuji" class="rounded"> 已去
+                </label>
+            </div>
+            <h3 class="font-bold mt-1">&#127983; 16:00 興福寺</h3>
+            <p class="text-xs text-gray-500 mt-1">步行 5~10 分 &#x2022; 境內免費/國寶館 &#165;700 &#x2022; 停留 30~45 分</p>
+            <p class="text-xs text-gray-400 mt-1">五重塔（日本第二高木造塔）&#x2022; 國寶阿修羅像</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Kofuku-ji+Nara" target="_blank" class="map-btn mt-2">&#128205; Google Map</a>
+        </div>
+
+        <!-- Return to Osaka -->
+        <div class="transport-box rounded-xl p-4">
+            <h4 class="font-bold text-sm text-blue-800 mb-2">&#128647; 17:00~17:30 回大阪</h4>
+            <details class="border border-blue-200 rounded-lg overflow-hidden">
+                <summary class="flex items-center gap-2 p-3 bg-blue-50 cursor-pointer hover:bg-blue-100 transition">
+                    <span class="bg-green-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">回程</span>
+                    <span class="text-xs font-bold text-blue-800 flex-1">原路返回（近鉄 &#8594; 堺筋線）</span>
+                    <span class="text-[10px] text-blue-600 font-bold">&#165;870 &#x2022; 45 分</span>
+                    <span class="text-gray-400 text-xs arrow-icon">&#9660;</span>
+                </summary>
+                <div class="p-3 text-xs text-gray-700 space-y-3 bg-white">
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-7 h-7 rounded-full bg-green-600 text-white flex items-center justify-center text-[10px] font-bold">1</div>
+                            <div class="w-0.5 flex-1 bg-green-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">近鉄奈良站 &#8594; 近鉄奈良線</p>
+                            <p class="text-gray-500">從興福寺/奈良公園走回近鉄奈良站約 5~10 分，搭往「大阪難波」方向</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 車程約 35~38 分 &#8594; <strong>近鉄日本橋站</strong>下車</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Kintetsu+Nara+Station" target="_blank" class="map-btn mt-1">&#128205; 近鉄奈良站</a>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-7 h-7 rounded-full bg-green-600 text-white flex items-center justify-center text-[10px] font-bold">2</div>
+                            <div class="w-0.5 flex-1 bg-green-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">近鉄日本橋 &#8594; 地下通道轉地鐵日本橋站</p>
+                            <p class="text-gray-500">跟著「Osaka Metro」指標走，轉堺筋線南行（往天下茶屋方向）</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 步行 2~5 分 + 1 站到惠美須町</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-7 h-7 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-bold text-green-700">~18:15 回到惠美須町</p>
+                            <p class="text-gray-500">晚餐可去道頓堀（步行 15 分）或回新世界繼續串炸探索</p>
+                            <a href="https://www.google.com/maps/dir/Kintetsu+Nara+Station/Ebisucho+Station+Osaka" target="_blank" class="map-btn mt-1">&#128205; 完整回程導航</a>
+                        </div>
+                    </div>
+                </div>
+            </details>
+        </div>
+
+        <!-- Evening food -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-amber-400">
+            <span class="tag-food text-[10px] px-2 py-0.5 rounded-full font-bold">晚餐</span>
+            <h3 class="font-bold mt-1">&#127860; 晚餐選項</h3>
+            <div class="food-box rounded-lg p-3 mt-2 text-xs text-gray-700 space-y-1">
+                <p>&#x2022; <strong>道頓堀 味乃家</strong> &#8211; 大阪燒名店（熟食 &#10004;）&#165;1,000~1,500</p>
+                <p>&#x2022; <strong>道頓堀 金龍拉麵</strong> &#8211; 24hr 營業，宵夜首選</p>
+                <p>&#x2022; 回新世界繼續串炸探索</p>
+            </div>
+        </div>
+
+        <!-- Salon -->
+        <div class="salon-box rounded-xl p-4">
+            <h4 class="font-bold text-sm text-purple-800">&#128135;&#8205;&#9792;&#65039; 今日髮廊推薦</h4>
+            <div class="mt-2 text-xs text-gray-700">
+                <p class="font-bold">LUXBE OSAKA 梅田茶屋町店</p>
+                <p>&#x2022; 全年無休 &#x2022; 9:00~21:00</p>
+                <p>&#x2022; 梅田站步行 1 分 &#x2022; 剪+染+護 &#165;7,900~8,900</p>
+                <p>&#x2022; HotPepper 4.79 星 &#x2022; CP 值最高</p>
+                <p>&#x2022; 有英語設計師 Aco（倫敦工作 2 年經驗）</p>
+                <p class="text-purple-600 text-[10px] mt-1">&#128161; 預約方式：HotPepper Beauty 線上預約</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=LUXBE+OSAKA+梅田+茶屋町" target="_blank" class="map-btn mt-2">&#128205; Google Map</a>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+            <h4 class="text-xs font-bold text-gray-500 mb-2">&#128221; 備忘錄</h4>
+            <textarea class="note-area w-full border border-gray-200 rounded-lg p-2 text-xs" placeholder="記點什麼..." data-note="day1"></textarea>
+        </div>
+    </div>
+</div>
+
+<!-- ===== DAY 2: 2/28 OSAKA ===== -->
+<div class="day-panel" id="day-2">
+    <div class="mb-4">
+        <div class="flex items-center gap-2 mb-1">
+            <span class="text-2xl">&#127983;</span>
+            <div>
+                <h2 class="font-black text-lg text-gray-800">Day 2 &#8211; 2/28 (六) 大阪全日</h2>
+                <p class="text-xs text-gray-400">大阪城 &#x2022; 黑門市場 &#x2022; 道頓堀 &#x2022; 心齋橋 &#x2022; 梅田夜景</p>
+            </div>
+        </div>
+        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-2 text-xs text-yellow-800 mt-2">
+            &#127744; <strong>注意：可能遇到春一番強風</strong>（風速 20-26 km/h），室外活動注意保暖。可買 Enjoy Eco Card 週末版 &#165;620 全日搭到飽！
+        </div>
+    </div>
+
+    <div class="space-y-4">
+        <!-- Osaka Castle -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-green-400">
+            <div class="flex justify-between items-start">
+                <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
+                <label class="flex items-center gap-1 text-[10px] text-gray-400">
+                    <input type="checkbox" data-check="osaka-castle" class="rounded"> 已去
+                </label>
+            </div>
+            <h3 class="font-bold mt-1">&#127983; 09:00 大阪城 + 天守閣</h3>
+            <p class="text-xs text-gray-500 mt-1">地鐵谷町線 谷町四丁目站 約 20 分 &#x2022; &#165;600 &#x2022; 09:00~17:00 &#x2022; 停留 2~2.5 hr</p>
+            <p class="text-xs text-green-600 mt-1">&#127800; <strong>大阪城梅林正值見頃！</strong>西之丸庭園梅花盛開中</p>
+            <details class="mt-2 border border-blue-200 rounded-lg overflow-hidden">
+                <summary class="flex items-center gap-2 p-2 bg-blue-50 cursor-pointer hover:bg-blue-100 transition">
+                    <span class="bg-blue-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">交通</span>
+                    <span class="text-xs font-bold text-blue-800 flex-1">堺筋線 &#8594; 中央線 &#8594; 谷町四丁目</span>
+                    <span class="text-[10px] text-blue-600 font-bold">&#165;280 &#x2022; 15 分</span>
+                    <span class="text-gray-400 text-xs arrow-icon">&#9660;</span>
+                </summary>
+                <div class="p-3 text-xs text-gray-700 space-y-3 bg-white">
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">1</div>
+                            <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">惠美須町 &#8594; 堺筋線北行 &#8594; 堺筋本町站</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 4 站約 7 分</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">2</div>
+                            <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">轉中央線（綠色）&#8594; 谷町四丁目站</p>
+                            <p class="text-gray-500">同站轉乘，跟著「中央線 森ノ宮方面」指標</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 2 站約 4 分</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-bold text-green-700">9 號出口出站 &#8594; 步行 10 分到天守閣</p>
+                            <div class="flex gap-2 mt-1 flex-wrap">
+                                <a href="https://www.google.com/maps/dir/Ebisucho+Station/Osaka+Castle" target="_blank" class="map-btn">&#128205; 完整導航</a>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Tanimachi+4-chome+Station" target="_blank" class="map-btn">&#128205; 谷町四丁目站</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </details>
+            <div class="food-box rounded-lg p-2 mt-2 text-xs text-gray-700">
+                &#127860; 附近午餐：<strong>得正咖哩烏龍麵</strong>（濃厚咖哩+溫泉蛋 &#165;800~1,000）或 <strong>鰻処うな味</strong>（鰻魚三吃）
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Osaka+Castle" target="_blank" class="map-btn mt-2">&#128205; Google Map</a>
+        </div>
+
+        <!-- Kuromon Market -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-amber-400">
+            <div class="flex justify-between items-start">
+                <div>
+                    <span class="tag-food text-[10px] px-2 py-0.5 rounded-full font-bold">美食</span>
+                    <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold ml-1">景點</span>
+                </div>
+                <label class="flex items-center gap-1 text-[10px] text-gray-400">
+                    <input type="checkbox" data-check="kuromon" class="rounded"> 已去
+                </label>
+            </div>
+            <h3 class="font-bold mt-1">&#128031; 12:00 黑門市場</h3>
+            <p class="text-xs text-gray-500 mt-1">地鐵到日本橋站步行 3 分 &#x2022; 免費入場 &#x2022; 停留 1~1.5 hr</p>
+            <div class="food-box rounded-lg p-3 mt-2 text-xs text-gray-700 space-y-1">
+                <p class="font-bold text-amber-800">&#127860; 推薦攤位（全部熟食 &#10004;）</p>
+                <p>&#x2022; <strong>魚福</strong> &#8211; 炭烤扇貝、烤蟹腳、烤鰻魚（女友安心吃！）</p>
+                <p>&#x2022; <strong>黑門三平</strong> &#8211; 新鮮海鮮（有烤物區，可選非生食）</p>
+                <p>&#x2022; 和牛串燒 &#x2022; 現烤干貝 &#x2022; 當季水果</p>
+                <p class="text-red-500 text-[10px]">&#9888; 避開明顯的刺身攤位即可，大部分攤位有烤物選項</p>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Kuromon+Ichiba+Market" target="_blank" class="map-btn mt-2">&#128205; Google Map</a>
+        </div>
+
+        <!-- Dotonbori + Shinsaibashi -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-orange-400">
+            <div class="flex justify-between items-start">
+                <div>
+                    <span class="tag-shopping text-[10px] px-2 py-0.5 rounded-full font-bold">逛街</span>
+                    <span class="tag-food text-[10px] px-2 py-0.5 rounded-full font-bold ml-1">美食</span>
+                </div>
+                <label class="flex items-center gap-1 text-[10px] text-gray-400">
+                    <input type="checkbox" data-check="dotonbori" class="rounded"> 已去
+                </label>
+            </div>
+            <h3 class="font-bold mt-1">&#127776; 14:00 道頓堀 + 心齋橋筋</h3>
+            <p class="text-xs text-gray-500 mt-1">從黑門市場步行 10 分 &#x2022; 停留 2~3 hr</p>
+            <p class="text-xs text-gray-400 mt-1">固力果跑人看板 &#x2022; 藥妝採購 &#x2022; 心齋橋筋商店街 &#x2022; 美國村</p>
+            <div class="food-box rounded-lg p-3 mt-2 text-xs text-gray-700 space-y-1">
+                <p class="font-bold text-amber-800">&#127860; 下午茶 & 小吃</p>
+                <p>&#x2022; <strong>章魚燒</strong>（道頓堀到處都是）</p>
+                <p>&#x2022; <strong>味乃家 大阪燒</strong> &#8211; 名店 &#165;1,000~1,500</p>
+            </div>
+            <div class="flex gap-2 mt-2">
+                <a href="https://www.google.com/maps/search/?api=1&query=Dotonbori+Osaka" target="_blank" class="map-btn">&#128205; 道頓堀</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Shinsaibashi+Osaka" target="_blank" class="map-btn">&#128205; 心齋橋</a>
+            </div>
+        </div>
+
+        <!-- Umeda Night View -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-purple-400">
+            <div class="flex justify-between items-start">
+                <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
+                <label class="flex items-center gap-1 text-[10px] text-gray-400">
+                    <input type="checkbox" data-check="umeda" class="rounded"> 已去
+                </label>
+            </div>
+            <h3 class="font-bold mt-1">&#127749; 17:30 梅田藍天大廈夜景</h3>
+            <p class="text-xs text-gray-500 mt-1">地鐵到梅田站 約 15 分 &#x2022; 展望台 &#165;1,500 &#x2022; 停留 1~1.5 hr</p>
+            <p class="text-xs text-gray-400 mt-1">露天展望台 360° 夜景 &#x2022; 日落約 17:50 &#x2022; 超浪漫 &#127764;</p>
+            <details class="mt-2 border border-blue-200 rounded-lg overflow-hidden">
+                <summary class="flex items-center gap-2 p-2 bg-blue-50 cursor-pointer hover:bg-blue-100 transition">
+                    <span class="bg-blue-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">交通</span>
+                    <span class="text-xs font-bold text-blue-800 flex-1">御堂筋線 &#8594; 梅田 &#8594; 步行</span>
+                    <span class="text-[10px] text-blue-600 font-bold">&#165;230 &#x2022; 20 分</span>
+                    <span class="text-gray-400 text-xs arrow-icon">&#9660;</span>
+                </summary>
+                <div class="p-3 text-xs text-gray-700 space-y-3 bg-white">
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">1</div>
+                            <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">心齋橋站 &#8594; 御堂筋線北行 &#8594; 梅田站</p>
+                            <p class="text-gray-500">搭往千里中央/新大阪方向，ICOCA 刷進刷出</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 3 站約 8 分</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Umeda+Station+Osaka+Metro" target="_blank" class="map-btn mt-1">&#128205; 梅田站</a>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">2</div>
+                            <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">梅田站出口 &#8594; 步行到藍天大廈</p>
+                            <p class="text-gray-500">從北口出站往北走，穿過地下道到新梅田City。入口有手扶梯到 39F 空中庭園</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 步行約 10 分</p>
+                            <p class="text-blue-600 text-[10px] mt-1">&#128161; 地下隧道有彩色燈飾，很好認路</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-bold text-green-700">抵達藍天大廈！搭電梯到 39F 再手扶梯到屋頂</p>
+                            <div class="flex gap-2 mt-1 flex-wrap">
+                                <a href="https://www.google.com/maps/dir/Shinsaibashi+Station/Umeda+Sky+Building" target="_blank" class="map-btn">&#128205; 完整導航</a>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Umeda+Sky+Building" target="_blank" class="map-btn">&#128205; 藍天大廈</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </details>
+        </div>
+
+        <!-- Dinner -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-amber-400">
+            <span class="tag-food text-[10px] px-2 py-0.5 rounded-full font-bold">晚餐</span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-pink-100 text-pink-700 ml-1">約會推薦 &#127801;</span>
+            <h3 class="font-bold mt-1">&#127860; 19:00 梅田約會晚餐</h3>
+            <div class="food-box rounded-lg p-3 mt-2 text-xs text-gray-700 space-y-3">
+                <div>
+                    <p class="font-bold text-pink-800">&#11088; 蝶つがひ（Choutsugai）&#8211; 超推！</p>
+                    <p>28F 全席夜景 &#x2022; 情侶並排面向窗戶的階梯式設計</p>
+                    <p>每桌保證夜景 &#x2022; &#165;4,000~6,000/人 &#x2022; 需預約</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=蝶つがひ+梅田" target="_blank" class="map-btn mt-1">&#128205; Google Map</a>
+                </div>
+                <div>
+                    <p class="font-bold text-amber-800">&#128171; 板前焼肉 一牛 &#8211; A5 和牛</p>
+                    <p>道頓堀 A5 黑毛和牛 &#x2022; &#165;5,000~8,000/人 &#x2022; 需線上預約</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=板前焼肉一牛+道頓堀" target="_blank" class="map-btn mt-1">&#128205; Google Map</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Salon -->
+        <div class="salon-box rounded-xl p-4">
+            <h4 class="font-bold text-sm text-purple-800">&#128135;&#8205;&#9792;&#65039; 今日髮廊推薦</h4>
+            <div class="mt-2 text-xs text-gray-700">
+                <p class="font-bold">CRAIVE New York 心斎橋店</p>
+                <p>&#x2022; 心斎橋站步行 2 分 &#x2022; 11:00~20:00 &#x2022; 週一公休（今天六OK）</p>
+                <p>&#x2022; 剪髮 &#165;5,000 起 &#x2022; 新客 8 折 &#x2022; NY 風格 Dry Cut</p>
+                <p>&#x2022; 9F 高空沙龍可眺望大阪街景</p>
+                <p class="text-purple-600 text-[10px] mt-1">&#128161; 預約：電話 06-6241-0323 / Email info@craive.biz</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=CRAIVE+New+York+心斎橋" target="_blank" class="map-btn mt-2">&#128205; Google Map</a>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+            <h4 class="text-xs font-bold text-gray-500 mb-2">&#128221; 備忘錄</h4>
+            <textarea class="note-area w-full border border-gray-200 rounded-lg p-2 text-xs" placeholder="記點什麼..." data-note="day2"></textarea>
+        </div>
+    </div>
+</div>
+
+<!-- ===== DAY 3: 3/1 KYOTO DAY 1 ===== -->
+<div class="day-panel" id="day-3">
+    <div class="mb-4">
+        <div class="flex items-center gap-2 mb-1">
+            <span class="text-2xl">&#9961;&#65039;</span>
+            <div>
+                <h2 class="font-black text-lg text-gray-800">Day 3 &#8211; 3/1 (日) 京都 Day 1</h2>
+                <p class="text-xs text-gray-400">嵐山竹林 &#x2022; 金閣寺 &#x2022; 清水寺 &#x2022; 二年坂 &#x2192; 祇園 check in</p>
+            </div>
+        </div>
+        <div class="bg-indigo-50 border border-indigo-200 rounded-lg p-2 text-xs text-indigo-800 mt-2">
+            &#127976; <strong>今晚住京都！</strong>APA Hotel Kyoto-Gion Excellent &#x2022; 動線：西&#8594;北&#8594;東&#8594;飯店，不走回頭路
+        </div>
+    </div>
+
+    <div class="space-y-4">
+        <!-- Transport to Arashiyama -->
+        <div class="transport-box rounded-xl p-4">
+            <h4 class="font-bold text-sm text-blue-800 mb-2">&#128647; 惠美須町 &#8594; 嵐山</h4>
+            <details class="border border-blue-200 rounded-lg overflow-hidden">
+                <summary class="flex items-center gap-2 p-3 bg-blue-50 cursor-pointer hover:bg-blue-100 transition">
+                    <span class="bg-blue-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">去程</span>
+                    <span class="text-xs font-bold text-blue-800 flex-1">堺筋線 &#8594; 阪急京都線 &#8594; 嵐山線</span>
+                    <span class="text-[10px] text-blue-600 font-bold">&#165;660 &#x2022; 85 分</span>
+                    <span class="text-gray-400 text-xs arrow-icon">&#9660;</span>
+                </summary>
+                <div class="p-3 text-xs text-gray-700 space-y-3 bg-white">
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">1</div>
+                            <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">07:30 惠美須町 &#8594; 堺筋線北行</p>
+                            <p class="text-gray-500">搭往天神橋筋六丁目方向（堺筋線直通阪急，不用轉車！）</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 搭到<strong>淡路站</strong>約 20 分</p>
+                            <p class="text-blue-600 text-[10px] mt-1">&#128161; 部分班次直通阪急京都線，看車頭標示「高槻市」「京都河原町」就直接坐到桂</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Ebisucho+Station+Osaka" target="_blank" class="map-btn mt-1">&#128205; 惠美須町站</a>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">2</div>
+                            <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">淡路站 &#8594; 阪急京都線特急 &#8594; 桂站</p>
+                            <p class="text-gray-500">在淡路轉阪急京都線特急（往京都河原町方向），到<strong>桂站</strong>下車</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 約 18 分 &#x2022; ICOCA 可刷 &#x2022; 不需指定席</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Katsura+Station+Hankyu" target="_blank" class="map-btn mt-1">&#128205; 桂站</a>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">3</div>
+                            <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">桂站 &#8594; 阪急嵐山線 &#8594; 嵐山站</p>
+                            <p class="text-gray-500">同月台對面轉乘嵐山線（支線，只有 2 站），很好認</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 約 7 分 &#8594; 嵐山站下車</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-7 h-7 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-bold text-green-700">~09:00 抵達阪急嵐山站</p>
+                            <p class="text-gray-500">出站步行 10 分到竹林小徑入口，途經渡月橋</p>
+                            <div class="flex gap-2 mt-1 flex-wrap">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Hankyu+Arashiyama+Station" target="_blank" class="map-btn">&#128205; 嵐山站</a>
+                                <a href="https://www.google.com/maps/dir/Ebisucho+Station+Osaka/Hankyu+Arashiyama+Station" target="_blank" class="map-btn">&#128205; 完整路線導航</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </details>
+        </div>
+
+        <!-- Arashiyama -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-green-400">
+            <div class="flex justify-between items-start">
+                <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
+                <label class="flex items-center gap-1 text-[10px] text-gray-400">
+                    <input type="checkbox" data-check="arashiyama" class="rounded"> 已去
+                </label>
+            </div>
+            <h3 class="font-bold mt-1">&#127811; 09:00 嵐山竹林小徑 + 渡月橋</h3>
+            <p class="text-xs text-gray-500 mt-1">阪急嵐山站步行 10 分 &#x2022; 免費 &#x2022; 停留 1.5~2 hr</p>
+            <p class="text-xs text-gray-400 mt-1">幽靜竹林 &#x2022; 渡月橋大場景合照 &#x2022; 09:00 前到避開人潮！</p>
+            <div class="food-box rounded-lg p-3 mt-2 text-xs text-gray-700 space-y-1">
+                <p class="font-bold text-amber-800">&#127860; 嵐山午餐（二擇一）</p>
+                <div class="mt-1">
+                    <p>&#11088; <strong>松籟庵</strong> &#8211; 首相別墅改建 &#x2022; 湯豆腐 + 景觀 &#x2022; &#165;3,500~5,000</p>
+                    <p class="text-gray-500 text-[10px]">需前一天 17:00 前預約</p>
+                </div>
+                <div class="mt-1">
+                    <p>&#x2022; <strong>嵯峨とうふ稲</strong> &#8211; 湯豆腐料理 &#165;1,500~2,500（平價版）</p>
+                </div>
+            </div>
+            <div class="flex gap-2 mt-2">
+                <a href="https://www.google.com/maps/search/?api=1&query=Arashiyama+Bamboo+Forest" target="_blank" class="map-btn">&#128205; 竹林</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Togetsukyo+Bridge" target="_blank" class="map-btn">&#128205; 渡月橋</a>
+            </div>
+        </div>
+
+        <!-- Kinkaku-ji -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-yellow-400">
+            <div class="flex justify-between items-start">
+                <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
+                <label class="flex items-center gap-1 text-[10px] text-gray-400">
+                    <input type="checkbox" data-check="kinkakuji" class="rounded"> 已去
+                </label>
+            </div>
+            <h3 class="font-bold mt-1">&#10024; 12:30 金閣寺</h3>
+            <p class="text-xs text-gray-500 mt-1">&#165;500 &#x2022; 09:00~17:00 &#x2022; 停留 1~1.5 hr</p>
+            <p class="text-xs text-gray-400 mt-1">金碧輝煌建築 + 庭園倒影 = 京都地標</p>
+            <details class="mt-2 border border-blue-200 rounded-lg overflow-hidden">
+                <summary class="flex items-center gap-2 p-2 bg-blue-50 cursor-pointer hover:bg-blue-100 transition">
+                    <span class="bg-blue-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">交通</span>
+                    <span class="text-xs font-bold text-blue-800 flex-1">嵐電 &#8594; 北野白梅町 &#8594; 公車/步行</span>
+                    <span class="text-[10px] text-blue-600 font-bold">&#165;450 &#x2022; 40 分</span>
+                    <span class="text-gray-400 text-xs arrow-icon">&#9660;</span>
+                </summary>
+                <div class="p-3 text-xs text-gray-700 space-y-3 bg-white">
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">1</div>
+                            <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">嵐電嵐山站 &#8594; 京福電鐵（嵐電）</p>
+                            <p class="text-gray-500">阪急嵐山走 5 分到嵐電嵐山站，搭路面電車往「四条大宮」方向</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 到<strong>北野白梅町站</strong>約 20 分 &#x2022; &#165;220 &#x2022; ICOCA 可刷</p>
+                            <p class="text-blue-600 text-[10px] mt-1">&#128161; 嵐電是復古路面電車，沿途風景很可愛，拍照好時機！</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Randen+Arashiyama+Station" target="_blank" class="map-btn mt-1">&#128205; 嵐電嵐山站</a>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">2</div>
+                            <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">北野白梅町 &#8594; 金閣寺</p>
+                            <p class="text-gray-500">出站搭公車 205 或 101 到「金閣寺道」（10 分 &#165;230），或直接步行（20 分）</p>
+                            <p class="text-gray-400 text-[10px]">&#128694; 步行路線沿今出川通直走，路邊有指標</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-bold text-green-700">抵達金閣寺！門票 &#165;500</p>
+                            <div class="flex gap-2 mt-1 flex-wrap">
+                                <a href="https://www.google.com/maps/dir/Randen+Arashiyama+Station/Kinkaku-ji" target="_blank" class="map-btn">&#128205; 完整導航</a>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Kinkaku-ji" target="_blank" class="map-btn">&#128205; 金閣寺</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </details>
+            <div class="food-box rounded-lg p-2 mt-2 text-xs text-gray-700">
+                &#127860; 附近：<strong>助六牛排</strong> &#165;2,200 超值！或 <strong>雉子屋蕎麥麵</strong>
+            </div>
+        </div>
+
+        <!-- Kiyomizu-dera (moved from Day 4) -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-green-400">
+            <div class="flex justify-between items-start">
+                <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
+                <label class="flex items-center gap-1 text-[10px] text-gray-400">
+                    <input type="checkbox" data-check="kiyomizu" class="rounded"> 已去
+                </label>
+            </div>
+            <h3 class="font-bold mt-1">&#127983; 15:00 清水寺 + 二年坂三年坂</h3>
+            <p class="text-xs text-gray-500 mt-1">&#165;400 &#x2022; 06:00~18:00 &#x2022; 停留 1.5~2 hr</p>
+            <p class="text-xs text-gray-400 mt-1">清水舞台眺望京都全景 &#x2022; 古街散步 &#x2022; 抹茶甜點 &#x2022; 日落 ~17:50 拍金色光</p>
+            <details class="mt-2 border border-blue-200 rounded-lg overflow-hidden">
+                <summary class="flex items-center gap-2 p-2 bg-blue-50 cursor-pointer hover:bg-blue-100 transition">
+                    <span class="bg-blue-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">交通</span>
+                    <span class="text-xs font-bold text-blue-800 flex-1">金閣寺 &#8594; 清水寺（公車 or 計程車）</span>
+                    <span class="text-[10px] text-blue-600 font-bold">&#165;230~2,000</span>
+                    <span class="text-gray-400 text-xs arrow-icon">&#9660;</span>
+                </summary>
+                <div class="p-3 text-xs text-gray-700 space-y-3 bg-white">
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">A</div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">&#128652; 公車路線（省錢版）</p>
+                            <p class="text-gray-500">金閣寺道搭 <strong>205 號公車</strong> &#8594;「五条坂」或「清水道」下車 &#8594; 步行上坡 10 分</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 車程約 35~45 分（視塞車）&#x2022; &#165;230 &#x2022; ICOCA/京都1日券可用</p>
+                            <p class="text-amber-600 text-[10px] mt-1">&#9888; 假日公車可能很擠，建議在金閣寺道上車搶座位</p>
+                            <a href="https://www.google.com/maps/dir/Kinkaku-ji/Kiyomizu-dera/?travelmode=transit" target="_blank" class="map-btn mt-1">&#128205; 公車路線導航</a>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-[10px] font-bold">B</div>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-bold">&#128663; 計程車（舒服版）</p>
+                            <p class="text-gray-500">直接到清水寺入口，約 20 分 &#x2022; &#165;1,800~2,200</p>
+                            <p class="text-green-600 text-[10px]">&#128161; 走了一整天腳痠的話，兩人分攤很划算！</p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+            <div class="food-box rounded-lg p-2 mt-2 text-xs text-gray-700 space-y-1">
+                <p>&#127860; 參道上：生八橋 &#x2022; 抹茶芭菲 &#x2022; 京菓子 &#x2022; 2026 春季可能有梅花限定口味</p>
+            </div>
+            <div class="flex gap-2 mt-2">
+                <a href="https://www.google.com/maps/search/?api=1&query=Kiyomizu-dera" target="_blank" class="map-btn">&#128205; 清水寺</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Sannenzaka+Kyoto" target="_blank" class="map-btn">&#128205; 三年坂</a>
+            </div>
+        </div>
+
+        <!-- Walk down to Gion (natural flow) -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-pink-400">
+            <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
+            <h3 class="font-bold mt-1">&#127752; 17:00 二年坂 &#8594; 八坂神社 &#8594; 祇園 &#8594; Check in</h3>
+            <p class="text-xs text-gray-500 mt-1">清水寺一路下坡走到祇園，全程步行 20~30 分，沿途都是風景</p>
+            <p class="text-xs text-gray-400 mt-1">路線：清水坂 &#8594; 三年坂 &#8594; 二年坂 &#8594; 寧寧之道 &#8594; 八坂神社 &#8594; 花見小路 &#8594; 飯店</p>
+            <p class="text-xs text-pink-600 mt-1">&#127764; 日落約 17:50，Golden Hour 在這段路上拍照超美！</p>
+            <div class="flex gap-2 mt-2 flex-wrap">
+                <a href="https://www.google.com/maps/search/?api=1&query=Ninenzaka+Kyoto" target="_blank" class="map-btn">&#128205; 二年坂</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Yasaka+Shrine+Kyoto" target="_blank" class="map-btn">&#128205; 八坂神社</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Hanamikoji+Gion" target="_blank" class="map-btn">&#128205; 花見小路</a>
+            </div>
+        </div>
+
+        <!-- Kyoto Hotel -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-indigo-400">
+            <span class="tag-hotel text-[10px] px-2 py-0.5 rounded-full font-bold">住宿</span>
+            <span class="tag-fixed text-[10px] px-2 py-0.5 rounded-full font-bold ml-1">固定</span>
+            <h3 class="font-bold mt-1">&#127976; APA Hotel Kyoto-Gion Excellent</h3>
+            <p class="text-xs text-gray-500 mt-1">555 Minamigawa, Gionmachi, Higashiyama-ku, 605-0074</p>
+            <p class="text-xs text-gray-400 mt-1">從花見小路走過來就到！明天和服拍攝也在祇園</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=APA+Hotel+Kyoto+Gion+Excellent" target="_blank" class="map-btn mt-2">&#128205; Google Map</a>
+        </div>
+
+        <!-- Dinner -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-amber-400">
+            <span class="tag-food text-[10px] px-2 py-0.5 rounded-full font-bold">晚餐</span>
+            <h3 class="font-bold mt-1">&#127860; 18:30 祇園晚餐</h3>
+            <div class="food-box rounded-lg p-3 mt-2 text-xs text-gray-700 space-y-2">
+                <div>
+                    <p class="font-bold text-amber-800">&#11088; 圓堂 天婦羅</p>
+                    <p>140 年歷史 &#x2022; 祇園步行 5 分 &#x2022; &#165;3,500~6,000 &#x2022; 全熟食 &#10004;</p>
+                    <p class="text-gray-500 text-[10px]">需預約：TableCheck 或電話</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=天ぷら圓堂+祇園" target="_blank" class="map-btn mt-1">&#128205; Google Map</a>
+                </div>
+                <div>
+                    <p class="font-bold text-amber-800">&#127843; 豆水楼 祇園店</p>
+                    <p>130 年町家 &#x2022; 湯豆腐午膳 &#x2022; &#165;2,500~4,000 &#x2022; 需提前 3 天 email</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=豆水楼+祇園" target="_blank" class="map-btn mt-1">&#128205; Google Map</a>
+                </div>
+                <div>
+                    <p class="font-bold text-amber-800">&#127860; 祇園権兵衛（平價輕鬆吃）</p>
+                    <p>烏龍麵/蕎麥麵 &#x2022; &#165;1,000~1,800 &#x2022; 免預約</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Salon -->
+        <div class="salon-box rounded-xl p-4">
+            <h4 class="font-bold text-sm text-purple-800">&#128135;&#8205;&#9792;&#65039; 今日髮廊推薦</h4>
+            <div class="mt-2 text-xs text-gray-700">
+                <p class="font-bold">NOBOL Hair Salon & Spa（京都河原町）</p>
+                <p>&#x2022; 京都市役所前站步行 4 分 &#x2022; 9:30~18:30 &#x2022; 週一公休（今天日OK）</p>
+                <p>&#x2022; 剪髮 &#165;5,500~ &#x2022; Head Spa &#165;5,000~（超推！半私密平躺式）</p>
+                <p>&#x2022; 英語設計師：NOBOL、SAION、JUNE</p>
+                <p class="text-purple-600 text-[10px] mt-1">&#128161; 預約：英語線上系統 onemorehand.jp</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=NOBOL+Hair+salon+spa+Kyoto" target="_blank" class="map-btn mt-2">&#128205; Google Map</a>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+            <h4 class="text-xs font-bold text-gray-500 mb-2">&#128221; 備忘錄</h4>
+            <textarea class="note-area w-full border border-gray-200 rounded-lg p-2 text-xs" placeholder="記點什麼..." data-note="day3"></textarea>
+        </div>
+    </div>
+</div>
+
+<!-- ===== DAY 4: 3/2 KYOTO DAY 2 (KIMONO) ===== -->
+<div class="day-panel" id="day-4">
+    <div class="mb-4">
+        <div class="flex items-center gap-2 mb-1">
+            <span class="text-2xl">&#128088;</span>
+            <div>
+                <h2 class="font-black text-lg text-gray-800">Day 4 &#8211; 3/2 (一) 和服日 + 伏見稻荷</h2>
+                <p class="text-xs text-gray-400">和服拍攝（固定）&#x2022; 午餐 &#x2022; 伏見稻荷 &#x2192; 回大阪</p>
+            </div>
+        </div>
+        <div class="bg-pink-50 border border-pink-200 rounded-lg p-2 text-xs text-pink-800 mt-2">
+            &#128088; <strong>和服日穿搭提醒：</strong>V 領 HEATTECH 極暖（圓領會露出！）&#x2022; 淺股短褲型發熱褲襪 &#x2022; 足袋型襪子（木屐需腳趾分開）&#x2022; 降雨機率 27%，帶折疊傘
+        </div>
+    </div>
+
+    <div class="space-y-4">
+        <!-- Kimono FIXED -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-pink-500 ring-2 ring-pink-200">
+            <span class="tag-fixed text-[10px] px-2 py-0.5 rounded-full font-bold">固定 &#x2022; 已付費</span>
+            <span class="tag-photo text-[10px] px-2 py-0.5 rounded-full font-bold ml-1">拍攝</span>
+            <h3 class="font-bold mt-1 text-lg text-pink-700">&#128088; 和服租賃 + 專業拍攝</h3>
+            <div class="mt-2 text-xs space-y-1 text-gray-700">
+                <p>&#128347; <strong>09:00</strong> &#8211; 京都和服麗 祗園店 換裝</p>
+                <p>&#128345; <strong>09:00~11:00</strong> &#8211; 穿和服在祇園自由散步拍照</p>
+                <p>&#128348; <strong>11:00~13:00</strong> &#8211; 專業攝影師拍攝（2小時）</p>
+                <p>&#128349; <strong>~13:30</strong> &#8211; 歸還和服、換回便服</p>
+            </div>
+            <div class="bg-pink-50 rounded-lg p-2 mt-2 text-xs text-pink-800">
+                <p>&#128097; 女生絲綢振袖和服</p>
+                <p>&#128205; 拍攝地點：祇園周邊</p>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=京都和服麗+祗園店" target="_blank" class="map-btn mt-2">&#128205; 和服麗 祗園店</a>
+        </div>
+
+        <!-- Lunch after shoot -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-amber-400">
+            <span class="tag-food text-[10px] px-2 py-0.5 rounded-full font-bold">午餐</span>
+            <h3 class="font-bold mt-1">&#127860; 13:30 祇園午餐</h3>
+            <div class="food-box rounded-lg p-3 mt-2 text-xs text-gray-700 space-y-2">
+                <div>
+                    <p class="font-bold text-amber-800">&#127860; 祇園権兵衛（輕鬆吃）</p>
+                    <p>烏龍麵/蕎麥麵 &#x2022; &#165;1,000~1,800 &#x2022; 免預約 &#x2022; 拍完照不用等</p>
+                </div>
+                <div>
+                    <p class="font-bold text-amber-800">&#128171; 或到伏見稻荷參道邊吃邊逛</p>
+                    <p>稻荷壽司 &#x2022; 狐狸仙貝 &#x2022; 烤糰子 &#x2022; Vermillion Cafe</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fushimi Inari (main afternoon plan) -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-red-400">
+            <div class="flex justify-between items-start">
+                <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
+                <label class="flex items-center gap-1 text-[10px] text-gray-400">
+                    <input type="checkbox" data-check="fushimi" class="rounded"> 已去
+                </label>
+            </div>
+            <h3 class="font-bold mt-1">&#9961;&#65039; 14:30 伏見稻荷大社（千本鳥居）</h3>
+            <p class="text-xs text-gray-500 mt-1">免費 &#x2022; 24hr 開放 &#x2022; 爬到中段約 1.5 hr &#x2022; 週一人少！</p>
+            <p class="text-xs text-gray-400 mt-1">鮮紅鳥居隧道 &#x2022; 電影場景質感 &#x2022; 拍完和服照來這裡體力剛好</p>
+            <details class="mt-2 border border-blue-200 rounded-lg overflow-hidden">
+                <summary class="flex items-center gap-2 p-2 bg-blue-50 cursor-pointer hover:bg-blue-100 transition">
+                    <span class="bg-blue-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">交通</span>
+                    <span class="text-xs font-bold text-blue-800 flex-1">京阪電鐵 祇園四条 &#8594; 伏見稻荷</span>
+                    <span class="text-[10px] text-blue-600 font-bold">&#165;220 &#x2022; 10 分</span>
+                    <span class="text-gray-400 text-xs arrow-icon">&#9660;</span>
+                </summary>
+                <div class="p-3 text-xs text-gray-700 space-y-3 bg-white">
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">1</div>
+                            <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">祇園 &#8594; 京阪祇園四条站</p>
+                            <p class="text-gray-500">花見小路/八坂神社旁，走到四条通上的京阪地下入口</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 步行約 3~5 分 &#x2022; ICOCA 刷進站</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Gion-Shijo+Station" target="_blank" class="map-btn mt-1">&#128205; 祇園四条站</a>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">2</div>
+                            <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">搭京阪電鐵（往出町柳的反方向/淀屋橋方向）</p>
+                            <p class="text-gray-500">僅 2 站就到！在<strong>伏見稻荷站</strong>下車</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 車程僅 5 分 &#x2022; &#165;220</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-bold text-green-700">出站步行 3 分就到千本鳥居入口！</p>
+                            <div class="flex gap-2 mt-1 flex-wrap">
+                                <a href="https://www.google.com/maps/dir/Gion-Shijo+Station/Fushimi+Inari+Taisha" target="_blank" class="map-btn">&#128205; 完整導航</a>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Fushimi-Inari+Station+Keihan" target="_blank" class="map-btn">&#128205; 伏見稻荷站</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </details>
+            <div class="food-box rounded-lg p-2 mt-2 text-xs text-gray-700">
+                &#127860; 參道小吃：稻荷壽司 &#x2022; 狐狸仙貝 &#x2022; 烤糰子 &#x2022; Vermillion Cafe（文青咖啡廳，看鳥居景）
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Fushimi+Inari+Taisha" target="_blank" class="map-btn mt-2">&#128205; Google Map</a>
+        </div>
+
+        <!-- Alternative: Nishiki Market -->
+        <div class="bg-gradient-to-r from-amber-50 to-gray-50 rounded-xl p-4 border border-amber-200">
+            <h3 class="font-bold text-sm text-gray-800 mb-2">&#128260; 備選方案（如果拍完很累不想爬山）</h3>
+            <div class="alt-option rounded-xl p-4" data-option="afternoon-3-2" data-value="nishiki">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="bg-amber-100 text-amber-700 text-[10px] px-2 py-0.5 rounded-full font-bold">輕鬆版</span>
+                    <span class="font-bold text-sm">&#127855; 錦市場 + 河原町逛街</span>
+                </div>
+                <div class="text-xs text-gray-700 space-y-1">
+                    <p>&#x2022; 京都的廚房 &#x2022; 平地散步 &#x2022; 吃吃喝喝 &#x2022; 停留 1~1.5 hr</p>
+                    <div class="transport-box rounded-lg p-2 mt-1">
+                        &#128694; 從祇園步行 15 分到錦市場 &#x2022; 或公車到四条河原町
+                    </div>
+                    <div class="food-box rounded-lg p-2 mt-1">
+                        &#x2022; <strong>丸常蒲鉾店</strong> 現炸魚板天婦羅 &#x2022; <strong>田中鷄卵</strong> 出汁卷玉子燒 &#x2022; 京醬菜 &#x2022; 生八橋
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Nishiki+Market+Kyoto" target="_blank" class="map-btn mt-1">&#128205; 錦市場</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Return to Osaka -->
+        <div class="transport-box rounded-xl p-4">
+            <h4 class="font-bold text-sm text-blue-800 mb-2">&#128647; 17:00~18:00 回大阪</h4>
+            <details class="mb-3 border border-blue-200 rounded-lg overflow-hidden">
+                <summary class="flex items-center gap-2 p-3 bg-blue-50 cursor-pointer hover:bg-blue-100 transition">
+                    <span class="bg-blue-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">路線 A</span>
+                    <span class="text-xs font-bold text-blue-800 flex-1">從伏見稻荷回（推薦）</span>
+                    <span class="text-[10px] text-blue-600 font-bold">&#165;680 &#x2022; 70 分</span>
+                    <span class="text-gray-400 text-xs arrow-icon">&#9660;</span>
+                </summary>
+                <div class="p-3 text-xs text-gray-700 space-y-3 bg-white">
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">1</div>
+                            <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">京阪伏見稻荷站 &#8594; 京阪本線</p>
+                            <p class="text-gray-500">搭往「淀屋橋」方向的準急或急行</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 到<strong>京橋站</strong>約 40 分 &#x2022; &#165;420</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Fushimi-Inari+Station+Keihan" target="_blank" class="map-btn mt-1">&#128205; 伏見稻荷站</a>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">2</div>
+                            <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">京橋站 &#8594; 轉 Osaka Metro 長堀鶴見緑地線或堺筋線</p>
+                            <p class="text-gray-500">京橋轉地鐵到日本橋站 &#8594; 再轉堺筋線 1 站到惠美須町</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 約 20 分 &#x2022; &#165;260</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-bold text-green-700">~18:10 回到惠美須町！</p>
+                            <a href="https://www.google.com/maps/dir/Fushimi-Inari+Station/Ebisucho+Station+Osaka" target="_blank" class="map-btn mt-1">&#128205; 完整回程導航</a>
+                        </div>
+                    </div>
+                </div>
+            </details>
+            <details class="border border-gray-200 rounded-lg overflow-hidden">
+                <summary class="flex items-center gap-2 p-3 bg-gray-50 cursor-pointer hover:bg-gray-100 transition">
+                    <span class="bg-gray-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">路線 B</span>
+                    <span class="text-xs font-bold text-gray-700 flex-1">從錦市場回（備選）</span>
+                    <span class="text-[10px] text-gray-600 font-bold">&#165;410 &#x2022; 80 分</span>
+                    <span class="text-gray-400 text-xs arrow-icon">&#9660;</span>
+                </summary>
+                <div class="p-3 text-xs text-gray-700 space-y-3 bg-white">
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 rounded-full bg-gray-600 text-white flex items-center justify-center text-[10px] font-bold">1</div>
+                            <div class="w-0.5 flex-1 bg-gray-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">阪急京都河原町站 &#8594; 阪急京都線</p>
+                            <p class="text-gray-500">錦市場走 5 分到河原町地下入口，搭往「大阪梅田」方向的特急</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 到<strong>淡路站</strong>約 35 分 &#x2022; &#165;410</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Kyoto-Kawaramachi+Station+Hankyu" target="_blank" class="map-btn mt-1">&#128205; 河原町站</a>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 rounded-full bg-gray-600 text-white flex items-center justify-center text-[10px] font-bold">2</div>
+                            <div class="w-0.5 flex-1 bg-gray-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">淡路站 &#8594; 堺筋線直通 &#8594; 惠美須町</p>
+                            <p class="text-gray-500">淡路轉堺筋線直通（往天下茶屋方向），到惠美須町下車</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 約 20 分</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-6 h-6 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-bold text-green-700">~18:20 回到惠美須町！</p>
+                            <a href="https://www.google.com/maps/dir/Kyoto-Kawaramachi+Station/Ebisucho+Station+Osaka" target="_blank" class="map-btn mt-1">&#128205; 完整回程導航</a>
+                        </div>
+                    </div>
+                </div>
+            </details>
+        </div>
+
+        <!-- Salon -->
+        <div class="salon-box rounded-xl p-4">
+            <h4 class="font-bold text-sm text-purple-800">&#128135;&#8205;&#9792;&#65039; 今日髮廊推薦</h4>
+            <div class="mt-2 text-xs text-gray-700">
+                <p class="text-red-500 font-bold">&#9888; 3/2 是週一，大部分京都/大阪髮廊公休</p>
+                <p class="mt-1 font-bold text-green-700">&#10004; 唯一確定有開：LUXBE OSAKA 梅田茶屋町（全年無休 9:00~21:00）</p>
+                <p>&#x2022; 梅田站步行 1 分 &#x2022; 剪+染+護 &#165;7,900~8,900 &#x2022; HotPepper 預約</p>
+                <p class="text-purple-600 text-[10px] mt-1">&#128161; 回大阪後晚上去做也來得及（營業到 21:00）</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=LUXBE+OSAKA+梅田+茶屋町" target="_blank" class="map-btn mt-2">&#128205; Google Map</a>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+            <h4 class="text-xs font-bold text-gray-500 mb-2">&#128221; 備忘錄</h4>
+            <textarea class="note-area w-full border border-gray-200 rounded-lg p-2 text-xs" placeholder="記點什麼..." data-note="day4"></textarea>
+        </div>
+    </div>
+</div>
+
+<!-- ===== DAY 5: 3/3 DEPARTURE ===== -->
+<div class="day-panel" id="day-5">
+    <div class="mb-4">
+        <div class="flex items-center gap-2 mb-1">
+            <span class="text-2xl">&#9992;&#65039;</span>
+            <div>
+                <h2 class="font-black text-lg text-gray-800">Day 5 &#8211; 3/3 (二) 回程日</h2>
+                <p class="text-xs text-gray-400">上午輕鬆逛 &#x2022; 下午 Outlet（待確認）&#x2022; 20:45 起飛</p>
+            </div>
+        </div>
+        <div class="bg-red-50 border border-red-200 rounded-lg p-2 text-xs text-red-800 mt-2">
+            &#127783;&#65039; <strong>全日大雨預報！</strong>降雨機率 94-97%，Rinku Outlets 是戶外型商場，建議帶雨具。備案：提早去 KIX 逛免稅店
+        </div>
+    </div>
+
+    <div class="space-y-4">
+        <!-- Morning -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-orange-400">
+            <span class="tag-shopping text-[10px] px-2 py-0.5 rounded-full font-bold">採買</span>
+            <h3 class="font-bold mt-1">&#128092; 09:00~11:00 最後採買</h3>
+            <p class="text-xs text-gray-500 mt-1">新世界/日本橋/黑門市場/難波 &#x2022; 飯店附近走路就到</p>
+            <p class="text-xs text-gray-400 mt-1">伴手禮補貨、藥妝最後一波、電電城3C</p>
+        </div>
+
+        <!-- Checkout + luggage -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-blue-400">
+            <span class="tag-transport text-[10px] px-2 py-0.5 rounded-full font-bold">物流</span>
+            <h3 class="font-bold mt-1">&#128188; 11:00 退房 + 行李</h3>
+            <p class="text-xs text-gray-500 mt-1">退房後拖行李直接搭車去 Rinku，到了放置物櫃最省事</p>
+            <p class="text-xs text-gray-400 mt-1">臨空城站置物櫃 大型 &#165;700~800 &#x2022; Outlets 內也有 TUMOCA 寄放 &#165;800/件</p>
+        </div>
+
+        <!-- Rinku Outlets -->
+        <div class="bg-gradient-to-r from-orange-50 to-gray-50 rounded-xl p-4 border border-orange-200">
+            <h3 class="font-bold text-sm text-gray-800 mb-2">&#128260; 下午選擇（待確認）</h3>
+
+            <div class="alt-option rounded-xl p-4 mb-3" data-option="afternoon-3-3" data-value="outlet">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="bg-orange-100 text-orange-700 text-[10px] px-2 py-0.5 rounded-full font-bold">選項 A</span>
+                    <span class="tag-tbd text-[10px] px-2 py-0.5 rounded-full font-bold ml-1">待確認</span>
+                    <span class="font-bold text-sm">&#128092; 臨空城 Premium Outlets</span>
+                </div>
+                <div class="text-xs text-gray-700 space-y-1">
+                    <p>&#x2022; 250 間品牌店（Gucci、Burberry、Nike、MUJI...）</p>
+                    <p>&#x2022; 營業 10:00~20:00 &#x2022; 週二人少是優勢！</p>
+                    <p>&#x2022; 到 Information Center 出示護照領 <strong>Inbound Coupon</strong>（5~20% 額外折扣）</p>
+                    <p class="text-red-500">&#9888; 戶外型商場，3/3 預報大雨，帶雨具！</p>
+                    <details class="mt-1 border border-blue-200 rounded-lg overflow-hidden">
+                        <summary class="flex items-center gap-2 p-2 bg-blue-50 cursor-pointer hover:bg-blue-100 transition">
+                            <span class="bg-blue-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">交通</span>
+                            <span class="text-xs font-bold text-blue-800 flex-1">南海難波 &#8594; 臨空城 &#8594; KIX</span>
+                            <span class="text-[10px] text-blue-600 font-bold">&#165;820+170</span>
+                            <span class="text-gray-400 text-xs arrow-icon">&#9660;</span>
+                        </summary>
+                        <div class="p-3 text-xs text-gray-700 space-y-3 bg-white">
+                            <div class="flex gap-3">
+                                <div class="flex flex-col items-center">
+                                    <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">1</div>
+                                    <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                                </div>
+                                <div class="flex-1 pb-2">
+                                    <p class="font-bold">惠美須町 &#8594; 步行/地鐵到南海難波站</p>
+                                    <p class="text-gray-500">步行 12 分到南海難波 3F 月台，或搭 1 站地鐵到難波再走地下通道</p>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Nankai+Namba+Station" target="_blank" class="map-btn mt-1">&#128205; 南海難波站</a>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <div class="flex flex-col items-center">
+                                    <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">2</div>
+                                    <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                                </div>
+                                <div class="flex-1 pb-2">
+                                    <p class="font-bold">南海空港急行 &#8594; 臨空城站（りんくうタウン駅）</p>
+                                    <p class="text-gray-500">ICOCA 刷進站，搭「空港急行」在臨空城站下車（KIX 前一站）</p>
+                                    <p class="text-gray-400 text-[10px]">&#9201; 約 36~43 分 &#x2022; &#165;820</p>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Rinku-Town+Station" target="_blank" class="map-btn mt-1">&#128205; 臨空城站</a>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <div class="flex flex-col items-center">
+                                    <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">3</div>
+                                    <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                                </div>
+                                <div class="flex-1 pb-2">
+                                    <p class="font-bold">逛完 Outlets &#8594; 搭 1 站到 KIX 機場</p>
+                                    <p class="text-gray-500">臨空城站搭南海到關西機場站，僅 1 站 7 分鐘！</p>
+                                    <p class="text-gray-400 text-[10px]">&#165;170 &#x2022; ICOCA 可刷</p>
+                                    <p class="text-green-600 text-[10px] font-bold mt-1">&#10024; 超近超方便，不用趕！</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <div class="flex flex-col items-center">
+                                    <div class="w-6 h-6 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-bold text-green-700">17:30 抵達 KIX 第一航廈！</p>
+                                    <div class="flex gap-2 mt-1 flex-wrap">
+                                        <a href="https://www.google.com/maps/dir/Ebisucho+Station/Rinku+Premium+Outlets" target="_blank" class="map-btn">&#128205; 飯店→Outlets</a>
+                                        <a href="https://www.google.com/maps/dir/Rinku+Premium+Outlets/Kansai+International+Airport" target="_blank" class="map-btn">&#128205; Outlets→KIX</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Rinku+Premium+Outlets" target="_blank" class="map-btn mt-1">&#128205; Outlets Google Map</a>
+                </div>
+            </div>
+
+            <div class="alt-option rounded-xl p-4" data-option="afternoon-3-3" data-value="airport">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-full font-bold">選項 B</span>
+                    <span class="font-bold text-sm">&#9992;&#65039; 直接去 KIX 逛免稅店</span>
+                </div>
+                <div class="text-xs text-gray-700 space-y-1">
+                    <p>&#x2022; KIX DUTY FREE 2,500 平方公尺 &#x2022; 營業至 24:25</p>
+                    <p>&#x2022; 日本威士忌、SK-II、資生堂、KitKat 限定</p>
+                    <p>&#x2022; TASTE OF KANSAI 關西伴手禮</p>
+                    <p>&#x2022; 不用淋雨，行李直接拖進機場最輕鬆</p>
+                    <details class="mt-2 border border-blue-200 rounded-lg overflow-hidden">
+                        <summary class="flex items-center gap-2 p-2 bg-blue-50 cursor-pointer hover:bg-blue-100 transition">
+                            <span class="bg-blue-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">交通</span>
+                            <span class="text-xs font-bold text-blue-800 flex-1">南海難波 &#8594; KIX 直達</span>
+                            <span class="text-[10px] text-blue-600 font-bold">&#165;970 &#x2022; 46 分</span>
+                            <span class="text-gray-400 text-xs arrow-icon">&#9660;</span>
+                        </summary>
+                        <div class="p-3 text-xs text-gray-700 space-y-3 bg-white">
+                            <div class="flex gap-3">
+                                <div class="flex flex-col items-center">
+                                    <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">1</div>
+                                    <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                                </div>
+                                <div class="flex-1 pb-2">
+                                    <p class="font-bold">惠美須町 &#8594; 南海難波站 3F</p>
+                                    <p class="text-gray-500">步行 12 分或搭地鐵 1 站到難波再走地下通道</p>
+                                    <p class="text-gray-400 text-[10px]">&#128161; 退 ICOCA 可在南海售票窗口辦理！</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <div class="flex flex-col items-center">
+                                    <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">2</div>
+                                    <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                                </div>
+                                <div class="flex-1 pb-2">
+                                    <p class="font-bold">南海空港急行 &#8594; 關西機場站</p>
+                                    <p class="text-gray-500">不停臨空城，直達 KIX &#x2022; ICOCA 刷進刷出</p>
+                                    <p class="text-gray-400 text-[10px]">&#9201; 約 46 分 &#x2022; &#165;970</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <div class="flex flex-col items-center">
+                                    <div class="w-6 h-6 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-bold text-green-700">抵達 KIX！直接拖行李進第一航廈</p>
+                                    <a href="https://www.google.com/maps/dir/Ebisucho+Station+Osaka/Kansai+International+Airport" target="_blank" class="map-btn mt-1">&#128205; 完整導航</a>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-blue-400">
+            <span class="tag-transport text-[10px] px-2 py-0.5 rounded-full font-bold">時間表</span>
+            <h3 class="font-bold mt-1">&#128338; 建議時間表</h3>
+            <div class="mt-2 text-xs text-gray-700 space-y-1">
+                <p>11:30 &#8211; 從南海難波出發</p>
+                <p>12:15 &#8211; 抵達臨空城，寄放行李</p>
+                <p>12:30 &#8211; 午餐 @ RINKU FOOD PARK</p>
+                <p>13:15~17:00 &#8211; 購物（約 3.5~4 hr）</p>
+                <p><strong>17:15 &#8211; 搭電車到 KIX（7 分鐘）</strong></p>
+                <p>17:30 &#8211; 抵達機場</p>
+                <p>18:15 &#8211; 辦理登機 + 安檢</p>
+                <p>18:45~20:00 &#8211; 管制區免稅店 + 晚餐</p>
+                <p class="font-bold text-red-600">20:45 &#8211; D7 379 起飛！&#9992;&#65039;</p>
+            </div>
+            <div class="bg-amber-50 rounded-lg p-2 mt-2 text-xs text-amber-800">
+                &#9888; AirAsia X 在<strong>第一航廈</strong>（不是 T2）&#x2022; 廉航行李限額嚴格，注意別超重 &#x2022; 別忘了退 ICOCA 卡（南海窗口可辦）
+            </div>
+        </div>
+
+        <!-- Flight -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-blue-400">
+            <span class="tag-fixed text-[10px] px-2 py-0.5 rounded-full font-bold">固定</span>
+            <h3 class="font-bold mt-1">&#9992;&#65039; D7 379 關西 &#8594; 桃園</h3>
+            <p class="text-xs text-gray-500 mt-1">KIX 20:45 出發 &#8594; <strong>TPE 23:05 抵達</strong></p>
+            <p class="text-xs text-gray-400">AirAsia X &#x2022; 直飛</p>
+        </div>
+
+        <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+            <h4 class="text-xs font-bold text-gray-500 mb-2">&#128221; 備忘錄</h4>
+            <textarea class="note-area w-full border border-gray-200 rounded-lg p-2 text-xs" placeholder="記點什麼..." data-note="day5"></textarea>
+        </div>
+    </div>
+</div>
+
+<!-- ===== INFO TAB ===== -->
+<div class="day-panel" id="day-info">
+    <div class="space-y-4">
+        <!-- Transport Summary -->
+        <div class="bg-white rounded-xl p-4 shadow-sm border border-blue-100">
+            <h3 class="font-bold text-blue-800 flex items-center gap-2">&#128647; 交通票卡建議</h3>
+            <div class="mt-3 text-xs text-gray-700 space-y-2">
+                <div class="p-3 bg-blue-50 rounded-lg">
+                    <p class="font-bold text-blue-800">&#11088; 必買：ICOCA 卡</p>
+                    <p>KIX 機場售票機買 &#x2022; 押金 &#165;500 + 儲值 &#165;3,000~5,000</p>
+                    <p>可刷：地鐵、近鉄、阪急、南海、公車、便利商店、販賣機</p>
+                    <p class="text-blue-600">離開前在 KIX 南海窗口退卡（扣手續費 &#165;220 後退還餘額+押金）</p>
+                </div>
+                <div class="p-3 bg-green-50 rounded-lg">
+                    <p class="font-bold text-green-800">2/28 大阪日：Enjoy Eco Card</p>
+                    <p>週末 &#165;620（超划算！）&#x2022; Osaka Metro 全線 + 巴士 &#x2022; 當日不限次</p>
+                </div>
+                <div class="p-3 bg-purple-50 rounded-lg">
+                    <p class="font-bold text-purple-800">3/1 京都日：京都地下鉄・バス 1 日券</p>
+                    <p>&#165;1,100 &#x2022; 京都市地鐵 + 巴士全線不限次</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weather -->
+        <div class="bg-white rounded-xl p-4 shadow-sm border border-blue-100">
+            <h3 class="font-bold text-blue-800 flex items-center gap-2">&#127782;&#65039; 天氣 & 穿搭</h3>
+            <div class="mt-3 text-xs text-gray-700 space-y-2">
+                <div class="grid grid-cols-3 gap-2 text-center">
+                    <div class="p-2 bg-green-50 rounded-lg"><p class="font-bold">2/26-27</p><p>&#9728;&#65039; 晴 15-16°C</p><p class="text-green-600 font-bold">最佳戶外日</p></div>
+                    <div class="p-2 bg-yellow-50 rounded-lg"><p class="font-bold">2/28-3/1</p><p>&#9729;&#65039; 多雲 10-14°C</p><p class="text-yellow-600 font-bold">2/28 強風</p></div>
+                    <div class="p-2 bg-red-50 rounded-lg"><p class="font-bold">3/2-3/3</p><p>&#127783;&#65039; 陰→雨</p><p class="text-red-600 font-bold">3/3 大雨！</p></div>
+                </div>
+                <div class="p-3 bg-amber-50 rounded-lg">
+                    <p class="font-bold text-amber-800">&#128087; 穿搭建議</p>
+                    <p>&#x2022; 洋蔥式穿搭：HEATTECH + 針織/毛衣 + 防風外套</p>
+                    <p>&#x2022; Slip-on 運動鞋（寺廟要脫鞋）+ 厚羊毛襪</p>
+                    <p>&#x2022; 帶折疊傘 + 暖暖包</p>
+                    <p>&#x2022; 京都寺廟木地板很冰，厚襪子必備！</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hair Salon Summary -->
+        <div class="bg-white rounded-xl p-4 shadow-sm border border-purple-100">
+            <h3 class="font-bold text-purple-800 flex items-center gap-2">&#128135;&#8205;&#9792;&#65039; 髮廊總覽（每日推薦）</h3>
+            <div class="mt-3 text-xs text-gray-700 space-y-2">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-[10px]">
+                        <thead><tr class="bg-purple-50">
+                            <th class="p-1 text-left">日期</th><th class="p-1 text-left">推薦</th><th class="p-1">剪髮</th><th class="p-1">英語</th>
+                        </tr></thead>
+                        <tbody>
+                            <tr class="border-b"><td class="p-1">2/27 五</td><td class="p-1 font-bold">LUXBE 梅田</td><td class="p-1 text-center">&#165;1,000~</td><td class="p-1 text-center">&#9898;</td></tr>
+                            <tr class="border-b"><td class="p-1">2/28 六</td><td class="p-1 font-bold">CRAIVE 心斎橋</td><td class="p-1 text-center">&#165;5,000~</td><td class="p-1 text-center">&#9898;</td></tr>
+                            <tr class="border-b"><td class="p-1">3/1 日</td><td class="p-1 font-bold">NOBOL 京都</td><td class="p-1 text-center">&#165;5,500~</td><td class="p-1 text-center">&#128994;</td></tr>
+                            <tr class="border-b bg-red-50"><td class="p-1">3/2 一</td><td class="p-1">多數公休！<br><strong>LUXBE 梅田</strong>全年無休</td><td class="p-1 text-center">&#165;1,000~</td><td class="p-1 text-center">&#9898;</td></tr>
+                            <tr><td class="p-1">3/3 二</td><td class="p-1 font-bold">ASSORT 堀江</td><td class="p-1 text-center">&#165;7,700~</td><td class="p-1 text-center">&#128994;</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-[10px] text-gray-500">&#128161; 建議出發前 1~2 週就預約。帶參考照片溝通最有效！</p>
+            </div>
+        </div>
+
+        <!-- Packing Checklist -->
+        <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+            <h3 class="font-bold text-gray-800 flex items-center gap-2">&#127890; 打包清單</h3>
+            <div class="mt-3 text-xs space-y-1" id="packing-list">
+                <p class="font-bold text-gray-600 mt-2">&#128087; 衣物</p>
+                <label class="packing-item flex items-center gap-2 p-1"><input type="checkbox" data-pack="p1"> V 領 HEATTECH 極暖（和服日用）</label>
+                <label class="packing-item flex items-center gap-2 p-1"><input type="checkbox" data-pack="p2"> 發熱褲襪（短褲型）</label>
+                <label class="packing-item flex items-center gap-2 p-1"><input type="checkbox" data-pack="p3"> 足袋型襪子</label>
+                <label class="packing-item flex items-center gap-2 p-1"><input type="checkbox" data-pack="p4"> 厚羊毛襪（寺廟用）</label>
+                <label class="packing-item flex items-center gap-2 p-1"><input type="checkbox" data-pack="p5"> 防風外套/輕羽絨</label>
+                <label class="packing-item flex items-center gap-2 p-1"><input type="checkbox" data-pack="p6"> Slip-on 運動鞋</label>
+                <label class="packing-item flex items-center gap-2 p-1"><input type="checkbox" data-pack="p7"> 暖暖包 x 數包</label>
+                <p class="font-bold text-gray-600 mt-2">&#128188; 隨身</p>
+                <label class="packing-item flex items-center gap-2 p-1"><input type="checkbox" data-pack="p8"> 護照</label>
+                <label class="packing-item flex items-center gap-2 p-1"><input type="checkbox" data-pack="p9"> 折疊傘</label>
+                <label class="packing-item flex items-center gap-2 p-1"><input type="checkbox" data-pack="p10"> 行動電源 + 充電線</label>
+                <label class="packing-item flex items-center gap-2 p-1"><input type="checkbox" data-pack="p11"> 濕紙巾（餵鹿後擦手）</label>
+                <label class="packing-item flex items-center gap-2 p-1"><input type="checkbox" data-pack="p12"> 日幣現金（中谷堂等只收現金）</label>
+                <label class="packing-item flex items-center gap-2 p-1"><input type="checkbox" data-pack="p13"> 口罩（備用）</label>
+                <label class="packing-item flex items-center gap-2 p-1"><input type="checkbox" data-pack="p14"> 髮型參考照片（給髮廊用）</label>
+                <p class="font-bold text-gray-600 mt-2">&#128240; 票券/APP</p>
+                <label class="packing-item flex items-center gap-2 p-1"><input type="checkbox" data-pack="p15"> 下載 Google Maps 離線地圖（關西地區）</label>
+                <label class="packing-item flex items-center gap-2 p-1"><input type="checkbox" data-pack="p16"> 下載 NAVITIME Japan Travel APP</label>
+                <label class="packing-item flex items-center gap-2 p-1"><input type="checkbox" data-pack="p17"> 機場買 ICOCA 卡</label>
+                <label class="packing-item flex items-center gap-2 p-1"><input type="checkbox" data-pack="p18"> 和服拍攝預約確認截圖</label>
+                <label class="packing-item flex items-center gap-2 p-1"><input type="checkbox" data-pack="p19"> APA Gion 飯店確認函</label>
+            </div>
+        </div>
+
+        <!-- Emergency Info -->
+        <div class="bg-white rounded-xl p-4 shadow-sm border border-red-100">
+            <h3 class="font-bold text-red-800 flex items-center gap-2">&#128680; 緊急資訊</h3>
+            <div class="mt-3 text-xs text-gray-700 space-y-1">
+                <p>&#128222; 日本緊急電話：<strong>110</strong>（警察）/ <strong>119</strong>（消防/救護車）</p>
+                <p>&#127973; 駐日台北經濟文化辦事處大阪：<strong>06-6443-8481</strong></p>
+                <p>&#128205; APA 難波南：浪速區日本橋 5-6-14</p>
+                <p>&#128205; APA 京都祇園：東山區祇園町南側 555</p>
+            </div>
+        </div>
+
+        <!-- Collaboration Setup -->
+        <div class="bg-white rounded-xl p-4 shadow-sm border border-sakura-200">
+            <h3 class="font-bold text-sakura-500 flex items-center gap-2">&#128101; 兩人共同編輯教學</h3>
+            <div class="mt-3 text-xs text-gray-700 space-y-2">
+                <p class="font-bold">&#127942; 最簡單的方法（30 秒設定）：</p>
+                <ol class="list-decimal ml-4 space-y-1">
+                    <li>打開 <a href="https://www.npoint.io/" target="_blank" class="text-blue-500 underline font-bold">npoint.io</a></li>
+                    <li>貼上 <code class="bg-gray-100 px-1 rounded">{}</code> 然後按 Save</li>
+                    <li>複製網址列的 ID（像 <code class="bg-gray-100 px-1 rounded">abc123def456</code>）</li>
+                    <li>點右上角 &#9881;&#65039; 貼到「npoint.io 端點 ID」</li>
+                    <li>兩人填同一個 ID 就能共享所有筆記和勾選！</li>
+                </ol>
+                <p class="mt-2 font-bold">&#128247; 美術加強方法：</p>
+                <ul class="list-disc ml-4 space-y-1">
+                    <li>用 <strong>Canva</strong> 搜尋「kawaii sticker」加可愛貼圖</li>
+                    <li>用 <strong>Gemini / ChatGPT</strong> 生成旅行插畫（Prompt：「cute watercolor illustration of deer in Nara park, kawaii style」）</li>
+                    <li>用 <strong>LINE 相簿</strong> 共享旅行照片</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</main>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ===== Tab Navigation =====
+const tabs = document.querySelectorAll('.day-tab');
+const panels = document.querySelectorAll('.day-panel');
+
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        const dayId = tab.dataset.day;
+        document.getElementById(`day-${dayId}`).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        saveState();
+    });
+});
+
+// ===== Weather API =====
+const cities = {
+    osaka: { lat: 34.6937, lon: 135.5023, name: '大阪' },
+    kyoto: { lat: 35.0116, lon: 135.7681, name: '京都' },
+    nara:  { lat: 34.6851, lon: 135.8048, name: '奈良' }
+};
+
+async function fetchWeather() {
+    try {
+        const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${cities.osaka.lat}&longitude=${cities.osaka.lon}&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode&timezone=Asia/Tokyo&forecast_days=7`);
+        const data = await res.json();
+        const today = data.daily;
+        const icons = { 0:'☀️', 1:'🌤️', 2:'⛅', 3:'☁️', 45:'🌫️', 48:'🌫️', 51:'🌦️', 53:'🌦️', 55:'🌧️', 61:'🌧️', 63:'🌧️', 65:'🌧️', 71:'🌨️', 73:'🌨️', 80:'🌦️', 81:'🌧️', 95:'⛈️' };
+        const icon = icons[today.weathercode[0]] || '☁️';
+        document.getElementById('weather-now').innerHTML = `${icon} ${today.temperature_2m_min[0]}°/${today.temperature_2m_max[0]}°`;
+
+        let html = '';
+        today.time.forEach((t, i) => {
+            const d = new Date(t);
+            const dateStr = `${d.getMonth()+1}/${d.getDate()}`;
+            const ic = icons[today.weathercode[i]] || '☁️';
+            const rain = today.precipitation_probability_max[i];
+            const rainClass = rain > 70 ? 'text-red-600 font-bold' : rain > 40 ? 'text-yellow-600' : 'text-green-600';
+            html += `<div class="flex items-center justify-between text-xs py-1 border-b border-gray-100">
+                <span class="w-10">${dateStr}</span>
+                <span>${ic}</span>
+                <span>${today.temperature_2m_min[i]}°~${today.temperature_2m_max[i]}°</span>
+                <span class="${rainClass}">☔${rain}%</span>
+            </div>`;
+        });
+        document.getElementById('weather-data').innerHTML = html;
+    } catch(e) {
+        document.getElementById('weather-now').innerHTML = '⚠️ 離線';
+    }
+}
+fetchWeather();
+
+function toggleWeatherPanel() {
+    document.getElementById('weather-panel').classList.toggle('hidden');
+    document.getElementById('settings-panel').classList.add('hidden');
+}
+function toggleSettings() {
+    document.getElementById('settings-panel').classList.toggle('hidden');
+    document.getElementById('weather-panel').classList.add('hidden');
+}
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('#weather-panel') && !e.target.closest('#weather-now')) {
+        document.getElementById('weather-panel').classList.add('hidden');
+    }
+    if (!e.target.closest('#settings-panel') && !e.target.closest('button[onclick="toggleSettings()"]')) {
+        document.getElementById('settings-panel').classList.add('hidden');
+    }
+});
+
+// ===== State Management =====
+function getState() {
+    const state = { notes: {}, checks: {}, packing: {}, options: {}, activeTab: '0' };
+    document.querySelectorAll('textarea[data-note]').forEach(el => {
+        state.notes[el.dataset.note] = el.value;
+    });
+    document.querySelectorAll('input[data-check]').forEach(el => {
+        state.checks[el.dataset.check] = el.checked;
+    });
+    document.querySelectorAll('input[data-pack]').forEach(el => {
+        state.packing[el.dataset.pack] = el.checked;
+    });
+    document.querySelectorAll('.alt-option.selected').forEach(el => {
+        state.options[el.dataset.option] = el.dataset.value;
+    });
+    const activeTab = document.querySelector('.day-tab.active');
+    if (activeTab) state.activeTab = activeTab.dataset.day;
+    return state;
+}
+
+function loadState(state) {
+    if (!state) return;
+    if (state.notes) {
+        Object.entries(state.notes).forEach(([k, v]) => {
+            const el = document.querySelector(`textarea[data-note="${k}"]`);
+            if (el) el.value = v;
+        });
+    }
+    if (state.checks) {
+        Object.entries(state.checks).forEach(([k, v]) => {
+            const el = document.querySelector(`input[data-check="${k}"]`);
+            if (el) el.checked = v;
+        });
+    }
+    if (state.packing) {
+        Object.entries(state.packing).forEach(([k, v]) => {
+            const el = document.querySelector(`input[data-pack="${k}"]`);
+            if (el) { el.checked = v; updatePackingStyle(el); }
+        });
+    }
+    if (state.options) {
+        Object.entries(state.options).forEach(([group, value]) => {
+            document.querySelectorAll(`.alt-option[data-option="${group}"]`).forEach(el => {
+                el.classList.toggle('selected', el.dataset.value === value);
+            });
+        });
+    }
+}
+
+function saveState() {
+    localStorage.setItem('osaka-trip-2026', JSON.stringify(getState()));
+}
+
+// Load from localStorage on page load
+const saved = localStorage.getItem('osaka-trip-2026');
+if (saved) loadState(JSON.parse(saved));
+
+// Auto-save on changes
+document.querySelectorAll('textarea, input[type="checkbox"]').forEach(el => {
+    el.addEventListener('input', saveState);
+    el.addEventListener('change', saveState);
+});
+
+// Packing style
+function updatePackingStyle(el) {
+    el.closest('.packing-item')?.classList.toggle('checked', el.checked);
+}
+document.querySelectorAll('input[data-pack]').forEach(el => {
+    el.addEventListener('change', () => { updatePackingStyle(el); saveState(); });
+    updatePackingStyle(el);
+});
+
+// Option selection
+document.querySelectorAll('.alt-option').forEach(el => {
+    el.addEventListener('click', () => {
+        const group = el.dataset.option;
+        document.querySelectorAll(`.alt-option[data-option="${group}"]`).forEach(o => o.classList.remove('selected'));
+        el.classList.add('selected');
+        saveState();
+    });
+});
+
+// ===== Cloud Sync (npoint.io) =====
+function saveSettings() {
+    const id = document.getElementById('npoint-id').value;
+    localStorage.setItem('npoint-id', id);
+}
+
+// Load npoint ID
+const savedNpointId = localStorage.getItem('npoint-id');
+if (savedNpointId) document.getElementById('npoint-id').value = savedNpointId;
+
+async function cloudSave() {
+    const id = document.getElementById('npoint-id').value.trim();
+    if (!id) { alert('請先填入 npoint.io 端點 ID！'); return; }
+    try {
+        document.getElementById('sync-status').textContent = '⏳ 上傳中...';
+        const res = await fetch(`https://api.npoint.io/${id}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(getState())
+        });
+        if (res.ok) {
+            document.getElementById('sync-status').innerHTML = '✅ 上傳成功！' + new Date().toLocaleTimeString();
+        } else {
+            document.getElementById('sync-status').innerHTML = '❌ 上傳失敗，請檢查 ID';
+        }
+    } catch(e) {
+        document.getElementById('sync-status').innerHTML = '❌ 網路錯誤';
+    }
+}
+
+async function cloudLoad() {
+    const id = document.getElementById('npoint-id').value.trim();
+    if (!id) { alert('請先填入 npoint.io 端點 ID！'); return; }
+    try {
+        document.getElementById('sync-status').textContent = '⏳ 載入中...';
+        const res = await fetch(`https://api.npoint.io/${id}`);
+        const data = await res.json();
+        if (data && data.notes) {
+            loadState(data);
+            saveState();
+            document.getElementById('sync-status').innerHTML = '✅ 載入成功！' + new Date().toLocaleTimeString();
+        } else {
+            document.getElementById('sync-status').innerHTML = '⚠️ 雲端資料為空';
+        }
+    } catch(e) {
+        document.getElementById('sync-status').innerHTML = '❌ 載入失敗';
+    }
+}
+
+function exportJSON() {
+    const data = JSON.stringify(getState(), null, 2);
+    const blob = new Blob([data], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'osaka-trip-2026-backup.json';
+    a.click();
+}
+
+function importJSON(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        try {
+            const data = JSON.parse(e.target.result);
+            loadState(data);
+            saveState();
+            alert('✅ 匯入成功！');
+        } catch(err) {
+            alert('❌ JSON 格式錯誤');
+        }
+    };
+    reader.readAsText(file);
+}
+</script>
+
+</body>
+</html>
