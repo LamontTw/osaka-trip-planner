@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2026 關西之旅 - 景點地圖</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Noto Sans TC', sans-serif; }
+        body { height: 100vh; display: flex; flex-direction: column; background: #f8fafc; }
+
+        /* Header */
+        .header {
+            background: white; border-bottom: 1px solid #e2e8f0; padding: 10px 16px;
+            display: flex; align-items: center; gap: 12px; z-index: 1000;
+        }
+        .back-link { text-decoration: none; color: #3b82f6; font-size: 14px; font-weight: 700; white-space: nowrap; }
+        .header h1 { font-size: 16px; font-weight: 900; color: #1e293b; }
+
+        /* City Tabs */
+        .tabs {
+            display: flex; background: white; border-bottom: 2px solid #e2e8f0;
+            z-index: 1000; padding: 0 8px;
+        }
+        .tab {
+            flex: 1; padding: 10px 4px; text-align: center; font-size: 13px; font-weight: 700;
+            color: #94a3b8; border: none; background: none; cursor: pointer;
+            border-bottom: 3px solid transparent; transition: all 0.2s;
+        }
+        .tab.active { color: #ff4778; border-bottom-color: #ff4778; }
+        .tab:hover:not(.active) { color: #64748b; border-bottom-color: #cbd5e1; }
+        .tab-badge {
+            display: inline-block; background: #f1f5f9; color: #64748b;
+            font-size: 10px; padding: 1px 6px; border-radius: 10px; margin-left: 4px;
+        }
+        .tab.active .tab-badge { background: #ffe0e6; color: #ff4778; }
+
+        /* Map */
+        #map { flex: 1; z-index: 1; }
+
+        /* Legend */
+        .legend {
+            position: fixed; bottom: 16px; left: 16px; z-index: 1000;
+            background: white; border-radius: 12px; padding: 10px 14px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15); font-size: 11px;
+            display: flex; gap: 12px; flex-wrap: wrap;
+        }
+        .legend-item { display: flex; align-items: center; gap: 4px; }
+        .legend-dot {
+            width: 14px; height: 14px; border-radius: 50%; border: 2px solid white;
+            box-shadow: 0 0 0 1.5px rgba(0,0,0,0.25);
+        }
+
+        /* Popup */
+        .spot-popup { min-width: 180px; }
+        .spot-popup h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+        .spot-popup .tag {
+            display: inline-block; font-size: 10px; font-weight: 700;
+            padding: 2px 8px; border-radius: 10px; color: white; margin-bottom: 6px;
+        }
+        .spot-popup .desc { font-size: 11px; color: #64748b; margin-bottom: 8px; }
+        .spot-popup .gmaps-link {
+            display: inline-flex; align-items: center; gap: 4px;
+            background: #3b82f6; color: white; text-decoration: none;
+            padding: 10px 16px; border-radius: 10px; font-size: 13px; font-weight: 700;
+            min-height: 44px;
+        }
+        .spot-popup .gmaps-link:hover { background: #2563eb; }
+
+        /* Leaflet overrides */
+        .leaflet-popup-content-wrapper { border-radius: 12px !important; }
+        .leaflet-popup-content { margin: 12px 14px !important; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <a href="osaka-trip-planner.html" class="back-link">&larr; 行程</a>
+    <h1>&#128205; 景點地圖</h1>
+</div>
+
+<div class="tabs" id="tabs">
+    <button class="tab active" data-city="osaka">&#127983; 大阪<span class="tab-badge">10</span></button>
+    <button class="tab" data-city="nara">&#129420; 奈良<span class="tab-badge">9</span></button>
+    <button class="tab" data-city="kyoto">&#9961;&#65039; 京都<span class="tab-badge">13</span></button>
+</div>
+
+<div id="map"></div>
+
+<div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#10b981"></div> 景點</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div> 美食</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#6366f1"></div> 住宿</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#f97316"></div> 逛街</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#ec4899"></div> 拍照</div>
+</div>
+
+<script>
+const COLORS = { sight:'#10b981', food:'#f59e0b', hotel:'#6366f1', shop:'#f97316', photo:'#ec4899' };
+const TAG_LABELS = { sight:'景點', food:'美食', hotel:'住宿', shop:'逛街', photo:'拍照' };
+
+const spots = {
+    osaka: [
+        { name:'APA Hotel 難波南', lat:34.6509, lng:135.5060, cat:'hotel', desc:'惠美須町站步行 1 分', q:'APA+Hotel+Namba+Minami+Ebisucho+Osaka' },
+        { name:'新世界', lat:34.6519, lng:135.5062, cat:'sight', desc:'串炸街・懷舊商店街', q:'Shinsekai+Osaka' },
+        { name:'通天閣', lat:34.6524, lng:135.5064, cat:'sight', desc:'大阪地標展望塔', q:'Tsutenkaku' },
+        { name:'大阪城', lat:34.6873, lng:135.5262, cat:'sight', desc:'天守閣 ¥600・梅林盛開中', q:'Osaka+Castle' },
+        { name:'黑門市場', lat:34.6628, lng:135.5073, cat:'food', desc:'大阪的廚房・炭烤海鮮', q:'Kuromon+Ichiba+Market' },
+        { name:'道頓堀', lat:34.6687, lng:135.5013, cat:'shop', desc:'固力果跑人・章魚燒・大阪燒', q:'Dotonbori+Osaka' },
+        { name:'心齋橋', lat:34.6727, lng:135.5005, cat:'shop', desc:'心齋橋筋商店街・藥妝採購', q:'Shinsaibashi+Osaka' },
+        { name:'梅田藍天大廈', lat:34.7053, lng:135.4906, cat:'sight', desc:'360° 露天展望台夜景', q:'Umeda+Sky+Building' },
+        { name:'臨空城 Outlets', lat:34.4148, lng:135.2930, cat:'shop', desc:'250 間品牌・KIX 前一站', q:'Rinku+Premium+Outlets' },
+        { name:'HARBS 難波Parks店', lat:34.6595, lng:135.5020, cat:'food', desc:'超人氣蛋糕！水果千層 ¥1,000~ ★ 候選', q:'HARBS+難波Parks店' },
+    ],
+    nara: [
+        { name:'奈良公園', lat:34.6851, lng:135.8430, cat:'sight', desc:'餵鹿！鹿仙貝 ¥200', q:'Nara+Park' },
+        { name:'東大寺', lat:34.6891, lng:135.8399, cat:'sight', desc:'世界最大木造建築・大佛 ¥800', q:'Todai-ji' },
+        { name:'二月堂', lat:34.6910, lng:135.8425, cat:'sight', desc:'免費・眺望奈良市區全景', q:'Nigatsu-do+Nara' },
+        { name:'春日大社', lat:34.6812, lng:135.8498, cat:'sight', desc:'3000 座石燈籠・本殿 ¥700', q:'Kasuga+Taisha' },
+        { name:'浮見堂', lat:34.6784, lng:135.8420, cat:'photo', desc:'鷺池六角亭・倒影絕美', q:'Ukimido+Nara+Park' },
+        { name:'片岡梅林', lat:34.6778, lng:135.8375, cat:'sight', desc:'250 棵紅白梅 + 鹿群同框', q:'Kataoka+Plum+Grove+Nara' },
+        { name:'奈良町', lat:34.6752, lng:135.8330, cat:'sight', desc:'江戶町家老街・咖啡廳雜貨', q:'Naramachi' },
+        { name:'中谷堂', lat:34.6811, lng:135.8307, cat:'food', desc:'高速搗麻糬！蓬餅 ¥200', q:'Nakatanidou+Nara' },
+        { name:'興福寺', lat:34.6832, lng:135.8329, cat:'sight', desc:'五重塔・國寶阿修羅像 ¥700', q:'Kofuku-ji+Nara' },
+    ],
+    kyoto: [
+        { name:'嵐山竹林', lat:35.0170, lng:135.6713, cat:'sight', desc:'幽靜竹林小徑・09:00 前避人潮', q:'Arashiyama+Bamboo+Forest' },
+        { name:'渡月橋', lat:35.0094, lng:135.6780, cat:'sight', desc:'嵐山大場景合照', q:'Togetsukyo+Bridge' },
+        { name:'金閣寺', lat:35.0394, lng:135.7293, cat:'sight', desc:'金碧輝煌 + 庭園倒影 ¥500', q:'Kinkaku-ji' },
+        { name:'清水寺', lat:34.9949, lng:135.7850, cat:'sight', desc:'清水舞台眺望京都 ¥400', q:'Kiyomizu-dera' },
+        { name:'二年坂', lat:34.9980, lng:135.7805, cat:'sight', desc:'古街散步・伴手禮', q:'Ninenzaka+Kyoto' },
+        { name:'三年坂', lat:34.9970, lng:135.7812, cat:'sight', desc:'石板階梯老街', q:'Sannenzaka+Kyoto' },
+        { name:'八坂神社', lat:35.0036, lng:135.7785, cat:'sight', desc:'祇園地標・24hr 開放', q:'Yasaka+Shrine+Kyoto' },
+        { name:'花見小路', lat:35.0030, lng:135.7748, cat:'sight', desc:'藝妓街・京都風情', q:'Hanamikoji+Gion' },
+        { name:'APA 京都祇園', lat:35.0022, lng:135.7740, cat:'hotel', desc:'3/1 住宿・花見小路旁', q:'APA+Hotel+Kyoto+Gion+Excellent' },
+        { name:'伏見稻荷大社', lat:34.9671, lng:135.7727, cat:'sight', desc:'千本鳥居・免費 24hr', q:'Fushimi+Inari+Taisha' },
+        { name:'錦市場', lat:35.0050, lng:135.7648, cat:'food', desc:'京都的廚房・魚板天婦羅', q:'Nishiki+Market+Kyoto' },
+        { name:'西陣織會館', lat:35.0305, lng:135.7490, cat:'sight', desc:'西陣織展示・和服秀表演 ★ 候選', q:'西陣織會館+京都' },
+        { name:'西陣あさぎ美術館', lat:35.0030, lng:135.7575, cat:'sight', desc:'ツカキスクエア京都 7F ★ 候選', q:'西陣あさぎ美術館+京都' },
+    ]
+};
+
+// Init map
+const map = L.map('map', { zoomControl: true });
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap',
+    maxZoom: 18
+}).addTo(map);
+
+let markers = [];
+
+function createMarker(spot) {
+    const color = COLORS[spot.cat];
+    const marker = L.circleMarker([spot.lat, spot.lng], {
+        radius: 18, fillColor: color, color: '#fff', weight: 3,
+        opacity: 1, fillOpacity: 0.85
+    }).addTo(map);
+
+    const emoji = { sight:'\u26E9\uFE0F', food:'\uD83C\uDF5C', hotel:'\uD83C\uDFE8', shop:'\uD83D\uDECD\uFE0F', photo:'\uD83D\uDCF8' }[spot.cat] || '';
+
+    const popupHTML = `
+        <div class="spot-popup">
+            <h3>${spot.name}</h3>
+            <span class="tag" style="background:${color}">${emoji} ${TAG_LABELS[spot.cat]}</span>
+            <div class="desc">${spot.desc}</div>
+            <a class="gmaps-link" href="https://www.google.com/maps/search/?api=1&query=${spot.q}" target="_blank">
+                &#128205; 在 Google Maps 開啟
+            </a>
+        </div>
+    `;
+    marker.bindPopup(popupHTML);
+
+    // Label
+    const label = L.marker([spot.lat, spot.lng], {
+        icon: L.divIcon({
+            className: '',
+            html: `<div style="
+                white-space:nowrap; font-size:12px; font-weight:700; color:#1e293b;
+                background:rgba(255,255,255,0.92); padding:3px 8px; border-radius:6px;
+                box-shadow:0 1px 4px rgba(0,0,0,0.15); pointer-events:none;
+                transform:translate(20px,-10px); border-left:3px solid ${color};
+            ">${spot.name}</div>`,
+            iconSize: [0, 0], iconAnchor: [0, 0]
+        })
+    }).addTo(map);
+
+    markers.push(marker, label);
+}
+
+function showCity(city) {
+    // Clear
+    markers.forEach(m => map.removeLayer(m));
+    markers = [];
+
+    // Add markers
+    spots[city].forEach(createMarker);
+
+    // Fit bounds
+    const group = L.featureGroup(markers);
+    map.fitBounds(group.getBounds().pad(0.15));
+
+    // Update tabs
+    document.querySelectorAll('.tab').forEach(t => {
+        t.classList.toggle('active', t.dataset.city === city);
+    });
+}
+
+// Tab click
+document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => showCity(tab.dataset.city));
+});
+
+// Init from hash or default
+const hash = location.hash.replace('#', '');
+showCity(['osaka','nara','kyoto'].includes(hash) ? hash : 'osaka');
+
+// Handle hash change
+window.addEventListener('hashchange', () => {
+    const h = location.hash.replace('#', '');
+    if (['osaka','nara','kyoto'].includes(h)) showCity(h);
+});
+</script>
+
+</body>
+</html>
