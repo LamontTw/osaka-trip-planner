@@ -90,7 +90,7 @@
         <div class="flex gap-1 mt-3 overflow-x-auto pb-1 -mx-1 px-1" id="day-tabs">
             <button class="day-tab text-xs px-3 py-1.5 whitespace-nowrap rounded-t active" data-day="0">2/26<br><span class="text-[9px]">抵達</span></button>
             <button class="day-tab text-xs px-3 py-1.5 whitespace-nowrap rounded-t" data-day="1">2/27<br><span class="text-[9px]">大阪</span></button>
-            <button class="day-tab text-xs px-3 py-1.5 whitespace-nowrap rounded-t" data-day="2">2/28<br><span class="text-[9px]">奈良</span></button>
+            <button class="day-tab text-xs px-3 py-1.5 whitespace-nowrap rounded-t" data-day="2">2/28<br><span class="text-[9px]">寶塚</span></button>
             <button class="day-tab text-xs px-3 py-1.5 whitespace-nowrap rounded-t" data-day="3">3/1<br><span class="text-[9px]">京都1</span></button>
             <button class="day-tab text-xs px-3 py-1.5 whitespace-nowrap rounded-t" data-day="4">3/2<br><span class="text-[9px]">京都2</span></button>
             <button class="day-tab text-xs px-3 py-1.5 whitespace-nowrap rounded-t" data-day="5">3/3<br><span class="text-[9px]">回程</span></button>
@@ -355,30 +355,52 @@
     </div>
 </div>
 
-<!-- ===== DAY 2: 2/28 NARA ===== -->
+<!-- ===== DAY 2: 2/28 OSAKA + TAKARAZUKA ===== -->
 <div class="day-panel" id="day-2">
     <div class="mb-4">
         <div class="flex items-center gap-2 mb-1">
-            <span class="text-2xl">&#129420;</span>
+            <span class="text-2xl">&#127917;</span>
             <div>
-                <h2 class="font-black text-lg text-gray-800 flex items-center gap-2">Day 2 &#8211; 2/28 (六) 奈良日 <span id="weather-day-2" class="text-[11px] font-normal bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full whitespace-nowrap"></span></h2>
-                <p class="text-xs text-gray-400">餵鹿 &#x2022; 東大寺 &#x2022; 春日大社 &#x2022; 梅花 &#x2022; 奈良町</p>
+                <h2 class="font-black text-lg text-gray-800 flex items-center gap-2">Day 2 &#8211; 2/28 (六) 大阪 + 寶塚 <span id="weather-day-2" class="text-[11px] font-normal bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full whitespace-nowrap"></span></h2>
+                <p class="text-xs text-gray-400">獅子殿 &#x2022; 寶塚歌劇 &#x2022; じぶんまくら量枕頭</p>
             </div>
         </div>
-        <div class="bg-green-50 border border-green-200 rounded-lg p-2 text-xs text-green-800 mt-2">
-            &#129420; <strong>奈良日！</strong>帶好鹿仙貝出發，片岡梅林正值盛開期！
+        <div class="bg-pink-50 border border-pink-200 rounded-lg p-2 text-xs text-pink-800 mt-2">
+            &#127917; <strong>寶塚日！</strong>花組『蒼月抄』11:00 開演。提前上 Web チケット 確認票！
         </div>
     </div>
 
     <div class="space-y-4">
-        <!-- Transport to Nara -->
+        <!-- Namba Yasaka Shrine -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-green-400">
+            <div class="flex justify-between items-start">
+                <div>
+                    <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-amber-100 text-amber-700 ml-1">你的指定！</span>
+                </div>
+                <label class="flex items-center gap-1 text-[10px] text-gray-400">
+                    <input type="checkbox" data-check="namba-yasaka" class="rounded"> 已去
+                </label>
+            </div>
+            <h3 class="font-bold mt-1">&#129409; 08:30 難波八阪神社（獅子殿）</h3>
+            <p class="text-xs text-gray-500 mt-1">飯店步行約 10 分 &#x2022; 免費 &#x2022; 境內自由 &#x2022; 停留 30 分</p>
+            <p class="text-xs text-gray-400 mt-1">巨大獅子頭建築高 12 公尺，嘴巴洞開超震撼！據說能「吞噬厄運、招來勝運」</p>
+            <div class="bg-amber-50 rounded-lg p-2 mt-2 text-xs text-amber-800">
+                <p>&#128161; <strong>拍照技巧：</strong>站在正面偏左 45 度角拍最有氣勢</p>
+                <p>&#x2022; 獅子殿裡面是舞台，會不定期有神事奉納</p>
+                <p>&#x2022; 境內有「獅子殿御守」，很有特色可買</p>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Namba+Yasaka+Shrine" target="_blank" class="map-btn mt-2">&#128205; 難波八阪神社</a>
+        </div>
+
+        <!-- Transport to Takarazuka -->
         <div class="transport-box rounded-xl p-4">
-            <h4 class="font-bold text-sm text-blue-800 mb-2">&#128647; 惠美須町 &#8594; 近鉄奈良</h4>
+            <h4 class="font-bold text-sm text-blue-800 mb-2">&#128647; 09:15 出發 &#8594; 寶塚大劇場</h4>
             <details class="border border-blue-200 rounded-lg overflow-hidden">
                 <summary class="flex items-center gap-2 p-3 bg-blue-50 cursor-pointer hover:bg-blue-100 transition">
                     <span class="bg-blue-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">去程</span>
-                    <span class="text-xs font-bold text-blue-800 flex-1">堺筋線 &#8594; 近鉄奈良線快速急行</span>
-                    <span class="text-[10px] text-blue-600 font-bold">&#165;870 &#x2022; 45 分</span>
+                    <span class="text-xs font-bold text-blue-800 flex-1">御堂筋線 &#8594; 阪急寶塚線</span>
+                    <span class="text-[10px] text-blue-600 font-bold">&#165;500 前後 &#x2022; 約 60 分</span>
                     <span class="text-gray-400 text-xs arrow-icon">&#9660;</span>
                 </summary>
                 <div class="p-3 text-xs text-gray-700 space-y-3 bg-white">
@@ -388,10 +410,9 @@
                             <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
                         </div>
                         <div class="flex-1 pb-2">
-                            <p class="font-bold">07:45 惠美須町站 &#8594; 堺筋線（北行）</p>
-                            <p class="text-gray-500">2 號出口進站，搭往天神橋筋六丁目方向</p>
-                            <p class="text-gray-400 text-[10px]">&#9201; 1 站 2 分 &#8594; <strong>日本橋站</strong>下車</p>
-                            <a href="https://www.google.com/maps/search/?api=1&query=Ebisucho+Station+Osaka" target="_blank" class="map-btn mt-1">&#128205; 惠美須町站</a>
+                            <p class="font-bold">難波八阪神社 &#8594; 步行到難波站（なんば）</p>
+                            <p class="text-gray-500">從神社步行約 5 分到 Osaka Metro 難波站</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 步行 5 分</p>
                         </div>
                     </div>
                     <div class="flex gap-3">
@@ -400,10 +421,9 @@
                             <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
                         </div>
                         <div class="flex-1 pb-2">
-                            <p class="font-bold">日本橋站 &#8594; 地下通道轉 近鉄日本橋站</p>
-                            <p class="text-gray-500">出地鐵改札，跟著「近鉄 Kintetsu」指標走地下通道（不用出地面）</p>
-                            <p class="text-gray-400 text-[10px]">&#9201; 步行 2~5 分</p>
-                            <p class="text-blue-600 text-[10px] mt-1">&#128161; 近鉄改札口刷 ICOCA 進站即可</p>
+                            <p class="font-bold">御堂筋線（北行）&#8594; 梅田站</p>
+                            <p class="text-gray-500">搭往千里中央 / 新大阪方向</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 約 15 分 &#x2022; ICOCA 直接刷</p>
                         </div>
                     </div>
                     <div class="flex gap-3">
@@ -412,10 +432,20 @@
                             <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
                         </div>
                         <div class="flex-1 pb-2">
-                            <p class="font-bold">搭「近鉄奈良線 快速急行」&#8594; 近鉄奈良站</p>
-                            <p class="text-gray-500">月台上看電子看板，搭「快速急行」或「急行」往奈良方向。ICOCA 直接刷</p>
-                            <p class="text-gray-400 text-[10px]">&#9201; 車程約 35~38 分 &#x2022; 直達不用轉車</p>
-                            <p class="text-red-500 text-[10px] mt-1">&#9888; 別搭「特急」（紫色車身），需加購特急券！快速急行免費且一樣快</p>
+                            <p class="font-bold">梅田 &#8594; 步行轉 阪急梅田站</p>
+                            <p class="text-gray-500">出地鐵改札，跟指標走到「阪急百貨」方向約 5~8 分</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 步行 5~8 分</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">4</div>
+                            <div class="w-0.5 flex-1 bg-blue-200 mt-1"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold">阪急寶塚線（急行）&#8594; 寶塚站</p>
+                            <p class="text-gray-500">搭往「寶塚」方向急行列車，ICOCA 直接刷</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 約 35 分 &#x2022; 直達</p>
                         </div>
                     </div>
                     <div class="flex gap-3">
@@ -423,11 +453,11 @@
                             <div class="w-7 h-7 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
                         </div>
                         <div class="flex-1">
-                            <p class="font-bold text-green-700">~08:30 抵達近鉄奈良站</p>
-                            <p class="text-gray-500">出站後直走 5 分鐘就到奈良公園，路上有很多鹿出來迎接你！</p>
+                            <p class="font-bold text-green-700">~10:20 抵達寶塚大劇場</p>
+                            <p class="text-gray-500">出站後沿「花之道」步行約 10 分到大劇場。沿路有寶塚明星海報、周邊商店</p>
                             <div class="flex gap-2 mt-1 flex-wrap">
-                                <a href="https://www.google.com/maps/search/?api=1&query=Kintetsu+Nara+Station" target="_blank" class="map-btn">&#128205; 近鉄奈良站</a>
-                                <a href="https://www.google.com/maps/dir/Ebisucho+Station+Osaka/Kintetsu+Nara+Station" target="_blank" class="map-btn">&#128205; 完整路線導航</a>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Takarazuka+Grand+Theater" target="_blank" class="map-btn">&#128205; 寶塚大劇場</a>
+                                <a href="https://www.google.com/maps/dir/Namba+Station+Osaka/Takarazuka+Grand+Theater" target="_blank" class="map-btn">&#128205; 完整路線導航</a>
                             </div>
                         </div>
                     </div>
@@ -435,163 +465,67 @@
             </details>
         </div>
 
-        <!-- Nara Park -->
-        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-green-400">
+        <!-- Takarazuka Show -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-pink-400">
             <div class="flex justify-between items-start">
                 <div>
-                    <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-amber-100 text-amber-700 ml-1">你的指定！</span>
+                    <span class="tag-fixed text-[10px] px-2 py-0.5 rounded-full font-bold">固定行程</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-pink-100 text-pink-700 ml-1">重頭戲！</span>
                 </div>
                 <label class="flex items-center gap-1 text-[10px] text-gray-400">
-                    <input type="checkbox" data-check="nara-park" class="rounded"> 已去
+                    <input type="checkbox" data-check="takarazuka-show" class="rounded"> 已看
                 </label>
             </div>
-            <h3 class="font-bold mt-1">&#129420; 08:40 奈良公園餵鹿</h3>
-            <p class="text-xs text-gray-500 mt-1">近鉄奈良站步行 5 分 &#x2022; 免費 &#x2022; 停留 30~45 分鐘</p>
-            <div class="bg-amber-50 rounded-lg p-2 mt-2 text-xs text-amber-800">
-                <p>&#127856; <strong>鹿仙貝 &#165;200/包</strong>（10片，到處有賣）</p>
-                <p class="mt-1">&#128161; <strong>餵鹿秘訣：</strong></p>
-                <p>&#x2022; 先向鹿鞠躬，牠會回禮，再餵食</p>
-                <p>&#x2022; 買了馬上餵，不要拿著炫耀（鹿會急躁咬衣服！）</p>
-                <p>&#x2022; 餵完攤開手掌心朝外 = 「沒有了」</p>
-                <p>&#x2022; 別跑別尖叫，3月非發情期相對溫和</p>
-                <p>&#x2022; 注意隨身物品：地圖、塑膠袋都可能被吃掉</p>
+            <h3 class="font-bold mt-1">&#127917; 11:00~14:05 寶塚歌劇 花組公演</h3>
+            <p class="text-xs text-gray-500 mt-1">寶塚大劇場 &#x2022; 約 3 小時（含中場休息 30 分）</p>
+            <div class="bg-pink-50 rounded-lg p-3 mt-2 text-xs text-pink-800 space-y-2">
+                <p>&#127917; <strong>演目：</strong></p>
+                <p>&#x2022; Musical 日本物『<strong>蒼月抄</strong>』&#8212; 和風音樂劇</p>
+                <p>&#x2022; Show Fantastique『<strong>EL DESEO</strong>』&#8212; 熱情拉丁秀</p>
+                <p class="mt-2">&#128176; <strong>票價：</strong>SS &#165;14,000 / S &#165;10,500 / A &#165;8,800 / B &#165;5,500 / 當日 B &#165;3,500</p>
+                <p class="mt-1">&#128161; <strong>進場須知：</strong></p>
+                <p>&#x2022; 開演 30 分前開放入場（10:30）</p>
+                <p>&#x2022; 座位對號入座，中場休息可到大廳買周邊</p>
+                <p>&#x2022; 劇場內禁止拍照/錄影/飲食</p>
+                <p>&#x2022; 可帶望遠鏡（現場也可租 &#165;500）</p>
             </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=Nara+Park" target="_blank" class="map-btn mt-2">&#128205; 奈良公園</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Takarazuka+Grand+Theater" target="_blank" class="map-btn mt-2">&#128205; 寶塚大劇場</a>
         </div>
 
-        <!-- Todai-ji -->
-        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-green-400">
-            <div class="flex justify-between items-start">
-                <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
-                <label class="flex items-center gap-1 text-[10px] text-gray-400">
-                    <input type="checkbox" data-check="todaiji" class="rounded"> 已去
-                </label>
-            </div>
-            <h3 class="font-bold mt-1">&#127983; 09:30 東大寺（大佛殿）</h3>
-            <p class="text-xs text-gray-500 mt-1">從公園步行 10~15 分 &#x2022; &#165;800 &#x2022; 08:00~17:00 &#x2022; 停留 45~60 分</p>
-            <p class="text-xs text-gray-400 mt-1">世界最大木造建築，15 公尺高青銅大佛震撼人心</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=Todai-ji" target="_blank" class="map-btn mt-2">&#128205; Google Map</a>
-        </div>
-
-        <!-- Nigatsu-do -->
-        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-green-400">
-            <div class="flex justify-between items-start">
-                <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
-                <label class="flex items-center gap-1 text-[10px] text-gray-400">
-                    <input type="checkbox" data-check="nigatsu" class="rounded"> 已去
-                </label>
-            </div>
-            <h3 class="font-bold mt-1">&#127747; 10:30 二月堂</h3>
-            <p class="text-xs text-gray-500 mt-1">從東大寺步行 10 分（上坡）&#x2022; 免費 &#x2022; 停留 20 分</p>
-            <p class="text-xs text-gray-400 mt-1">眺望奈良市區全景，清晨光線特別美</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=Nigatsu-do+Nara" target="_blank" class="map-btn mt-2">&#128205; Google Map</a>
-        </div>
-
-        <!-- Kasuga Taisha -->
-        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-green-400">
-            <div class="flex justify-between items-start">
-                <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
-                <label class="flex items-center gap-1 text-[10px] text-gray-400">
-                    <input type="checkbox" data-check="kasuga" class="rounded"> 已去
-                </label>
-            </div>
-            <h3 class="font-bold mt-1">&#9961;&#65039; 11:00 春日大社</h3>
-            <p class="text-xs text-gray-500 mt-1">從二月堂步行 15~20 分 &#x2022; 外圍免費/本殿 &#165;700 &#x2022; 06:30~17:30 &#x2022; 停留 45~60 分</p>
-            <p class="text-xs text-gray-400 mt-1">3,000 座石燈籠、苔蘚覆蓋的參道，神聖感滿點</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=Kasuga+Taisha" target="_blank" class="map-btn mt-2">&#128205; Google Map</a>
-        </div>
-
-        <!-- Ukimido -->
-        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-pink-400">
-            <span class="tag-photo text-[10px] px-2 py-0.5 rounded-full font-bold">拍照秘境</span>
-            <h3 class="font-bold mt-1">&#128247; 12:00 浮見堂（鷺池）</h3>
-            <p class="text-xs text-gray-500 mt-1">從春日大社步行 10~15 分（下坡）&#x2022; 免費 &#x2022; 24hr &#x2022; 停留 15~20 分</p>
-            <p class="text-xs text-gray-400 mt-1">六角涼亭浮在池上，倒影極美 &#x2022; 從池塘南側拍最佳</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=Ukimido+Nara+Park" target="_blank" class="map-btn mt-2">&#128205; Google Map</a>
-        </div>
-
-        <!-- Kataoka Plum -->
-        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-pink-400">
-            <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
-            <span class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-pink-100 text-pink-700 ml-1">梅花盛開中！</span>
-            <h3 class="font-bold mt-1">&#127800; 12:30 片岡梅林</h3>
-            <p class="text-xs text-gray-500 mt-1">從浮見堂步行 5 分 &#x2022; 免費 &#x2022; 停留 15~20 分</p>
-            <p class="text-xs text-gray-400 mt-1">250 棵紅白梅 + 鹿群同框 = 奈良早春最美畫面 &#127800;</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=Kataoka+Plum+Grove+Nara" target="_blank" class="map-btn mt-2">&#128205; Google Map</a>
-        </div>
-
-        <!-- Lunch -->
-        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-amber-400">
-            <span class="tag-food text-[10px] px-2 py-0.5 rounded-full font-bold">午餐</span>
-            <h3 class="font-bold mt-1">&#127860; 13:00 午餐時間</h3>
-            <div class="food-box rounded-lg p-3 mt-2">
-                <div class="space-y-3 text-xs text-gray-700">
-                    <div>
-                        <p class="font-bold text-amber-800">&#11088; 志津香釜飯（しづか）&#8211; 必吃！</p>
-                        <p>奈良七種釜飯 &#165;1,300~1,600 &#x2022; 全部熟食 &#10004;</p>
-                        <p class="text-gray-500">公園店：奈良市登大路町59-11 &#x2022; 平日 11:00~15:00</p>
-                        <p class="text-red-500">&#9888; 超熱門，建議 11:00 前到排隊！現煮需 20 分</p>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Shizuka+Kamameshi+Nara" target="_blank" class="map-btn mt-1">&#128205; 志津香</a>
-                    </div>
-                    <div>
-                        <p class="font-bold text-amber-800">&#127855; 平宗（ひらそう）&#8211; 有烤鯖魚版本</p>
-                        <p>「朱雀」定食 &#165;2,350 含焼鯖棒壽司（非生食）&#10004;</p>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Hiraso+Nara" target="_blank" class="map-btn mt-1">&#128205; 平宗</a>
-                    </div>
-                    <div>
-                        <p class="font-bold text-amber-800">&#127860; 其他選項</p>
-                        <p>&#x2022; <strong>うな菊</strong> 鰻魚飯 &#165;2,500~4,000（完全熟食）</p>
-                        <p>&#x2022; <strong>天極堂</strong> 吉野葛料理 &#165;1,000~2,000</p>
-                        <p>&#x2022; <strong>粟 ならまち店</strong> 有機蔬菜+大和牛 &#165;3,000~5,000</p>
-                    </div>
+        <!-- Ticket Info -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-orange-400">
+            <span class="tag-shopping text-[10px] px-2 py-0.5 rounded-full font-bold">購票攻略</span>
+            <h3 class="font-bold mt-1">&#127915; 購票方式（還沒買要趕快！）</h3>
+            <div class="bg-orange-50 rounded-lg p-3 mt-2 text-xs text-orange-900 space-y-2">
+                <div>
+                    <p class="font-bold">&#10102; 官方 Web チケット（最推薦）</p>
+                    <p>&#x2022; 網址：kageki.hankyu.co.jp &#8594; 公演一覽 &#8594; 花組</p>
+                    <p>&#x2022; 需註冊帳號（可用 email），支援信用卡</p>
+                    <p>&#x2022; 取票：劇場自動取票機 or 便利商店取票</p>
+                    <p class="text-red-600 font-bold">&#9888; 2/28 是週六熱門場次，越早買越好！</p>
+                </div>
+                <div>
+                    <p class="font-bold">&#10103; 當日券 B 席（&#165;3,500）&#8212; 備案</p>
+                    <p>&#x2022; 當天早上劇場窗口販售（先著順）</p>
+                    <p>&#x2022; 通常週六很快賣完，建議 08:00 前到排隊</p>
+                    <p>&#x2022; 位置在 2 樓後方，看得到但比較遠</p>
+                </div>
+                <div>
+                    <p class="font-bold">&#10104; おけぴ（轉讓平台）&#8212; 搶票用</p>
+                    <p>&#x2022; okepi.net &#8594; 搜尋「花組 蒼月抄」</p>
+                    <p>&#x2022; 粉絲間的票券轉讓，定價出售，安全</p>
                 </div>
             </div>
         </div>
 
-        <!-- Naramachi -->
-        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-green-400">
-            <div class="flex justify-between items-start">
-                <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
-                <label class="flex items-center gap-1 text-[10px] text-gray-400">
-                    <input type="checkbox" data-check="naramachi" class="rounded"> 已去
-                </label>
-            </div>
-            <h3 class="font-bold mt-1">&#127983; 14:30 奈良町散步</h3>
-            <p class="text-xs text-gray-500 mt-1">步行 5~10 分 &#x2022; 免費 &#x2022; 停留 60~90 分</p>
-            <p class="text-xs text-gray-400 mt-1">江戶町家老街 &#x2022; 咖啡廳 &#x2022; 手作雜貨 &#x2022; 格子之家 &#x2022; 庚申堂</p>
-            <div class="bg-pink-50 rounded-lg p-2 mt-2 text-xs">
-                <p class="text-pink-800">&#127849; <strong>中谷堂</strong> 高速搗麻糬表演！蓬餅 &#165;200/個（僅收現金）</p>
-                <p class="text-pink-800">&#127854; <strong>大佛布丁</strong> 抹茶/原味/焦糖 &#165;440~1,100</p>
-            </div>
-            <div class="flex gap-2 mt-2">
-                <a href="https://www.google.com/maps/search/?api=1&query=Naramachi" target="_blank" class="map-btn">&#128205; 奈良町</a>
-                <a href="https://www.google.com/maps/search/?api=1&query=Nakatanidou+Nara" target="_blank" class="map-btn">&#128205; 中谷堂</a>
-            </div>
-        </div>
-
-        <!-- Kofuku-ji -->
-        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-green-400">
-            <div class="flex justify-between items-start">
-                <span class="tag-sight text-[10px] px-2 py-0.5 rounded-full font-bold">景點</span>
-                <label class="flex items-center gap-1 text-[10px] text-gray-400">
-                    <input type="checkbox" data-check="kofukuji" class="rounded"> 已去
-                </label>
-            </div>
-            <h3 class="font-bold mt-1">&#127983; 16:00 興福寺</h3>
-            <p class="text-xs text-gray-500 mt-1">步行 5~10 分 &#x2022; 境內免費/國寶館 &#165;700 &#x2022; 停留 30~45 分</p>
-            <p class="text-xs text-gray-400 mt-1">五重塔（日本第二高木造塔）&#x2022; 國寶阿修羅像</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=Kofuku-ji+Nara" target="_blank" class="map-btn mt-2">&#128205; Google Map</a>
-        </div>
-
-        <!-- Return to Osaka -->
+        <!-- Transport back to Umeda -->
         <div class="transport-box rounded-xl p-4">
-            <h4 class="font-bold text-sm text-blue-800 mb-2">&#128647; 17:00~17:30 回大阪</h4>
+            <h4 class="font-bold text-sm text-blue-800 mb-2">&#128647; 14:15 回梅田</h4>
             <details class="border border-blue-200 rounded-lg overflow-hidden">
                 <summary class="flex items-center gap-2 p-3 bg-blue-50 cursor-pointer hover:bg-blue-100 transition">
                     <span class="bg-green-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">回程</span>
-                    <span class="text-xs font-bold text-blue-800 flex-1">原路返回（近鉄 &#8594; 堺筋線）</span>
-                    <span class="text-[10px] text-blue-600 font-bold">&#165;870 &#x2022; 45 分</span>
+                    <span class="text-xs font-bold text-blue-800 flex-1">阪急寶塚線 &#8594; 梅田</span>
+                    <span class="text-[10px] text-blue-600 font-bold">&#165;280 &#x2022; 35 分</span>
                     <span class="text-gray-400 text-xs arrow-icon">&#9660;</span>
                 </summary>
                 <div class="p-3 text-xs text-gray-700 space-y-3 bg-white">
@@ -601,21 +535,9 @@
                             <div class="w-0.5 flex-1 bg-green-200 mt-1"></div>
                         </div>
                         <div class="flex-1 pb-2">
-                            <p class="font-bold">近鉄奈良站 &#8594; 近鉄奈良線</p>
-                            <p class="text-gray-500">從興福寺/奈良公園走回近鉄奈良站約 5~10 分，搭往「大阪難波」方向</p>
-                            <p class="text-gray-400 text-[10px]">&#9201; 車程約 35~38 分 &#8594; <strong>近鉄日本橋站</strong>下車</p>
-                            <a href="https://www.google.com/maps/search/?api=1&query=Kintetsu+Nara+Station" target="_blank" class="map-btn mt-1">&#128205; 近鉄奈良站</a>
-                        </div>
-                    </div>
-                    <div class="flex gap-3">
-                        <div class="flex flex-col items-center">
-                            <div class="w-7 h-7 rounded-full bg-green-600 text-white flex items-center justify-center text-[10px] font-bold">2</div>
-                            <div class="w-0.5 flex-1 bg-green-200 mt-1"></div>
-                        </div>
-                        <div class="flex-1 pb-2">
-                            <p class="font-bold">近鉄日本橋 &#8594; 地下通道轉地鐵日本橋站</p>
-                            <p class="text-gray-500">跟著「Osaka Metro」指標走，轉堺筋線南行（往天下茶屋方向）</p>
-                            <p class="text-gray-400 text-[10px]">&#9201; 步行 2~5 分 + 1 站到惠美須町</p>
+                            <p class="font-bold">寶塚站 &#8594; 阪急寶塚線（急行）</p>
+                            <p class="text-gray-500">搭往「大阪梅田」方向，ICOCA 刷卡進站</p>
+                            <p class="text-gray-400 text-[10px]">&#9201; 車程約 35 分 &#8594; <strong>大阪梅田站</strong></p>
                         </div>
                     </div>
                     <div class="flex gap-3">
@@ -623,35 +545,68 @@
                             <div class="w-7 h-7 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
                         </div>
                         <div class="flex-1">
-                            <p class="font-bold text-green-700">~18:15 回到惠美須町</p>
-                            <p class="text-gray-500">晚餐可去道頓堀（步行 15 分）或回新世界繼續串炸探索</p>
-                            <a href="https://www.google.com/maps/dir/Kintetsu+Nara+Station/Ebisucho+Station+Osaka" target="_blank" class="map-btn mt-1">&#128205; 完整回程導航</a>
+                            <p class="font-bold text-green-700">~14:50 抵達阪急梅田站</p>
+                            <p class="text-gray-500">出站後直接去 LUCUA 1100（ルクアイーレ）</p>
                         </div>
                     </div>
                 </div>
             </details>
         </div>
 
-        <!-- Evening food -->
+        <!-- Jibun Makura -->
+        <div class="card-event rounded-xl p-4 bg-white shadow-sm border-orange-400">
+            <div class="flex justify-between items-start">
+                <div>
+                    <span class="tag-shopping text-[10px] px-2 py-0.5 rounded-full font-bold">體驗</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-amber-100 text-amber-700 ml-1">量身訂製！</span>
+                </div>
+                <label class="flex items-center gap-1 text-[10px] text-gray-400">
+                    <input type="checkbox" data-check="jibun-makura" class="rounded"> 已去
+                </label>
+            </div>
+            <h3 class="font-bold mt-1">&#128716; 15:10 じぶんまくら ルクア大阪店</h3>
+            <p class="text-xs text-gray-500 mt-1">LUCUA 1100（ルクアイーレ）7F &#x2022; 10:30~20:30 &#x2022; 量測約 60 分</p>
+            <p class="text-xs text-gray-400 mt-1">AI + 專人測量你的頸椎 / 頭型 / 肩寬，現場製作專屬枕頭</p>
+            <div class="bg-amber-50 rounded-lg p-2 mt-2 text-xs text-amber-800">
+                <p>&#128176; <strong>價格：</strong>&#165;27,500（レギュラー）/ &#165;38,500（プレミアム）</p>
+                <p class="mt-1">&#128161; <strong>好處：</strong></p>
+                <p>&#x2022; 日本全國門市終身免費調整高度</p>
+                <p>&#x2022; 中材可更換（蕎麥殼 / 管材 / 棉花等）</p>
+                <p>&#x2022; 外國人也能買，帶回台灣繼續用</p>
+                <p class="text-red-600 mt-1">&#9888; 建議先到店預約或提早到場，週六可能要等</p>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E3%81%98%E3%81%B6%E3%82%93%E3%81%BE%E3%81%8F%E3%82%89+%E3%83%AB%E3%82%AF%E3%82%A2%E5%A4%A7%E9%98%AA%E5%BA%97" target="_blank" class="map-btn mt-2">&#128205; じぶんまくら ルクア大阪店</a>
+        </div>
+
+        <!-- Umeda Evening -->
         <div class="card-event rounded-xl p-4 bg-white shadow-sm border-amber-400">
             <span class="tag-food text-[10px] px-2 py-0.5 rounded-full font-bold">晚餐</span>
-            <h3 class="font-bold mt-1">&#127860; 晚餐選項</h3>
+            <h3 class="font-bold mt-1">&#127860; 16:30~ 梅田晚餐 + 逛街</h3>
+            <p class="text-xs text-gray-500 mt-1">你人已經在梅田，直接在這一帶解決晚餐！</p>
             <div class="food-box rounded-lg p-3 mt-2 text-xs text-gray-700 space-y-1">
-                <p>&#x2022; <strong>道頓堀 味乃家</strong> &#8211; 大阪燒名店（熟食 &#10004;）&#165;1,000~1,500</p>
-                <p>&#x2022; <strong>道頓堀 金龍拉麵</strong> &#8211; 24hr 營業，宵夜首選</p>
-                <p>&#x2022; 回新世界繼續串炸探索</p>
+                <p>&#x2022; <strong>LUCUA B2 美食街</strong> &#8211; 超多選擇（拉麵、定食、甜點）</p>
+                <p>&#x2022; <strong>阪急三番街</strong> &#8211; 地下美食街，在地上班族最愛</p>
+                <p>&#x2022; <strong>Yodobashi 梅田</strong> 8F 餐廳街 &#8211; 燒肉、壽司、豬排</p>
+                <p>&#x2022; <strong>梅田藍天大廈 空中庭園</strong> &#8211; 看夜景（&#165;1,500，到 22:00）</p>
+            </div>
+            <div class="bg-blue-50 rounded-lg p-2 mt-2 text-xs text-blue-800">
+                <p>&#128647; <strong>回飯店：</strong>御堂筋線 梅田 &#8594; 難波（15 分），再步行 10 分回飯店</p>
             </div>
         </div>
 
-        <!-- Note: 髮廊已移至 2/27 大阪日（YOLO hair） -->
-
-        <!-- City Map: 奈良 -->
-        <div class="bg-gradient-to-r from-blue-50 to-green-50 rounded-xl p-4 border border-blue-200">
-            <h4 class="font-bold text-sm text-blue-800 mb-1">&#128506; 奈良全景點地圖</h4>
-            <p class="text-xs text-gray-400 mb-3">9 個推薦地點標記在互動地圖上</p>
-            <a href="maps.html#nara" target="_blank" class="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2.5 rounded-lg text-sm font-bold hover:bg-blue-700 transition shadow-sm" style="text-decoration:none">
-                &#128205; 打開互動地圖
-            </a>
+        <!-- Day Summary -->
+        <div class="bg-gradient-to-r from-pink-50 to-purple-50 rounded-xl p-4 border border-pink-200">
+            <h4 class="font-bold text-sm text-pink-800 mb-2">&#128203; 今日行程總覽</h4>
+            <div class="text-xs text-gray-700 space-y-1">
+                <p>&#x2022; 08:30 難波八阪神社（獅子殿）</p>
+                <p>&#x2022; 09:15 出發去寶塚</p>
+                <p>&#x2022; 10:20 抵達寶塚大劇場</p>
+                <p>&#x2022; <strong>11:00~14:05 花組公演</strong></p>
+                <p>&#x2022; 14:50 回到梅田</p>
+                <p>&#x2022; 15:10 じぶんまくら量枕頭</p>
+                <p>&#x2022; 16:30~ 梅田晚餐 + 夜景</p>
+            </div>
+            <div class="text-xs text-gray-400 mt-2">&#128176; 預估今日交通費：約 &#165;1,100（ICOCA）</div>
         </div>
 
         <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
@@ -1849,8 +1804,8 @@
                             <p>市區走跳 &#x2022; 晚上 17:00 女友剪髮 &#8594; 舒適穿搭即可</p>
                         </div>
                         <div class="flex gap-2">
-                            <span class="text-[10px] font-bold text-green-700 whitespace-nowrap w-12">2/28 奈良</span>
-                            <p>奈良公園<strong>風大</strong> &#8594; 羽絨+圍巾 &#x2022; 白天有太陽暖和可脫外套</p>
+                            <span class="text-[10px] font-bold text-pink-700 whitespace-nowrap w-12">2/28 寶塚</span>
+                            <p>劇場室內暖氣足 &#8594; 薄外套即可 &#x2022; 花之道散步可搭圍巾</p>
                         </div>
                         <div class="flex gap-2">
                             <span class="text-[10px] font-bold text-blue-700 whitespace-nowrap w-12">3/1 京都</span>
@@ -1881,7 +1836,7 @@
                         </tr></thead>
                         <tbody>
                             <tr class="border-b bg-purple-50"><td class="p-1">2/27 五</td><td class="p-1 font-bold">&#11088; YOLO hair 難波<br><span class="text-[9px] text-purple-600">17:00 已確定</span></td><td class="p-1 text-center">--</td><td class="p-1 text-center">--</td></tr>
-                            <tr class="border-b"><td class="p-1">2/28 六</td><td class="p-1 font-bold">（奈良日）</td><td class="p-1 text-center">--</td><td class="p-1 text-center">--</td></tr>
+                            <tr class="border-b"><td class="p-1">2/28 六</td><td class="p-1 font-bold">（寶塚日）</td><td class="p-1 text-center">--</td><td class="p-1 text-center">--</td></tr>
                             <tr class="border-b"><td class="p-1">3/1 日</td><td class="p-1 font-bold">NOBOL 京都</td><td class="p-1 text-center">&#165;5,500~</td><td class="p-1 text-center">&#128994;</td></tr>
                             <tr class="border-b bg-red-50"><td class="p-1">3/2 一</td><td class="p-1">多數公休！<br><strong>LUXBE 梅田</strong>全年無休</td><td class="p-1 text-center">&#165;1,000~</td><td class="p-1 text-center">&#9898;</td></tr>
                             <tr><td class="p-1">3/3 二</td><td class="p-1 font-bold">ASSORT 堀江</td><td class="p-1 text-center">&#165;7,700~</td><td class="p-1 text-center">&#128994;</td></tr>
@@ -1968,7 +1923,7 @@ const weatherDesc = { 0:'晴天', 1:'大致晴', 2:'多雲', 3:'陰天', 45:'霧
 const tripDays = [
     { date: '2026-02-26', city: 'osaka', id: 0 },
     { date: '2026-02-27', city: 'osaka', id: 1 },
-    { date: '2026-02-28', city: 'nara',  id: 2 },
+    { date: '2026-02-28', city: 'osaka', id: 2 },
     { date: '2026-03-01', city: 'kyoto', id: 3 },
     { date: '2026-03-02', city: 'kyoto', id: 4 },
     { date: '2026-03-03', city: 'osaka', id: 5 },
